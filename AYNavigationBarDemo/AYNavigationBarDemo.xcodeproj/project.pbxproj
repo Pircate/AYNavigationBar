@@ -16,6 +16,7 @@
 		465DA74B1FD1020B00BAC8D1 /* AYNavigationBarDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DA74A1FD1020B00BAC8D1 /* AYNavigationBarDemoUITests.m */; };
 		465DA7621FD1046E00BAC8D1 /* NextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DA7611FD1046E00BAC8D1 /* NextViewController.m */; };
 		465DA7691FD1084E00BAC8D1 /* AYNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DA7651FD1084E00BAC8D1 /* AYNavigationBar.m */; };
+		92C41E307C114CD4C70BF7E6 /* libPods-AYNavigationBarDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94DA90E741CFE88B7DAFB22F /* libPods-AYNavigationBarDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		399D872F6CA1756C66535746 /* Pods-AYNavigationBarDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AYNavigationBarDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AYNavigationBarDemo/Pods-AYNavigationBarDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		465DA7231FD1020B00BAC8D1 /* AYNavigationBarDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AYNavigationBarDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		465DA7261FD1020B00BAC8D1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		465DA7271FD1020B00BAC8D1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -55,6 +57,8 @@
 		465DA7611FD1046E00BAC8D1 /* NextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NextViewController.m; sourceTree = "<group>"; };
 		465DA7641FD1084E00BAC8D1 /* AYNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYNavigationBar.h; sourceTree = "<group>"; };
 		465DA7651FD1084E00BAC8D1 /* AYNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYNavigationBar.m; sourceTree = "<group>"; };
+		85A1CF4DB95A03CCAD2AEB6D /* Pods-AYNavigationBarDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AYNavigationBarDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-AYNavigationBarDemo/Pods-AYNavigationBarDemo.release.xcconfig"; sourceTree = "<group>"; };
+		94DA90E741CFE88B7DAFB22F /* libPods-AYNavigationBarDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AYNavigationBarDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92C41E307C114CD4C70BF7E6 /* libPods-AYNavigationBarDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +87,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D2A2C329889D344621388F7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				94DA90E741CFE88B7DAFB22F /* libPods-AYNavigationBarDemo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		465DA71A1FD1020B00BAC8D1 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +102,8 @@
 				465DA73E1FD1020B00BAC8D1 /* AYNavigationBarDemoTests */,
 				465DA7491FD1020B00BAC8D1 /* AYNavigationBarDemoUITests */,
 				465DA7241FD1020B00BAC8D1 /* Products */,
+				64644C66CBC911734837769A /* Pods */,
+				1D2A2C329889D344621388F7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -148,6 +163,15 @@
 			path = ../../AYNavigationBar;
 			sourceTree = "<group>";
 		};
+		64644C66CBC911734837769A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				399D872F6CA1756C66535746 /* Pods-AYNavigationBarDemo.debug.xcconfig */,
+				85A1CF4DB95A03CCAD2AEB6D /* Pods-AYNavigationBarDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -155,9 +179,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 465DA74F1FD1020B00BAC8D1 /* Build configuration list for PBXNativeTarget "AYNavigationBarDemo" */;
 			buildPhases = (
+				A1C9464C2FD6864C6F93B9AC /* [CP] Check Pods Manifest.lock */,
 				465DA71F1FD1020B00BAC8D1 /* Sources */,
 				465DA7201FD1020B00BAC8D1 /* Frameworks */,
 				465DA7211FD1020B00BAC8D1 /* Resources */,
+				65336DECC72EEB8D6407EE73 /* [CP] Embed Pods Frameworks */,
+				097FB34504DF389F2C3FE30C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -274,6 +301,57 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		097FB34504DF389F2C3FE30C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AYNavigationBarDemo/Pods-AYNavigationBarDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		65336DECC72EEB8D6407EE73 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AYNavigationBarDemo/Pods-AYNavigationBarDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1C9464C2FD6864C6F93B9AC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AYNavigationBarDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		465DA71F1FD1020B00BAC8D1 /* Sources */ = {
@@ -437,6 +515,7 @@
 		};
 		465DA7501FD1020B00BAC8D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 399D872F6CA1756C66535746 /* Pods-AYNavigationBarDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -451,6 +530,7 @@
 		};
 		465DA7511FD1020B00BAC8D1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 85A1CF4DB95A03CCAD2AEB6D /* Pods-AYNavigationBarDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

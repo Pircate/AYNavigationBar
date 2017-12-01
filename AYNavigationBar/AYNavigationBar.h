@@ -56,7 +56,7 @@ typedef NS_ENUM(NSInteger, AYNavigationBarTitleViewStyle) {
 
 @end
 
-@interface UINavigationController (AYNavigationBar) <UIGestureRecognizerDelegate>
+@interface UINavigationController (AYNavigationBar)
 
 @property (nonatomic, assign) BOOL ay_navigationBarEnabled;
 

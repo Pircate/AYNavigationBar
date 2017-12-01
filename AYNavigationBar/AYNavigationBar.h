@@ -6,7 +6,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UINavigationController+FDFullscreenPopGesture.h"
 
 typedef NS_ENUM(NSInteger, AYNavigationBarTitleViewStyle) {
     AYNavigationBarTitleViewStyleDefault,  // horizontal center

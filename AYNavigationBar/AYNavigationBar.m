@@ -6,6 +6,7 @@
 //
 
 #import "AYNavigationBar.h"
+#import "UINavigationController+FDFullscreenPopGesture.h"
 
 #import <objc/runtime.h>
 

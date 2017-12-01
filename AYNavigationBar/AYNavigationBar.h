@@ -7,8 +7,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "UINavigationController+FDFullscreenPopGesture.h"
-
 typedef NS_ENUM(NSInteger, AYNavigationBarTitleViewStyle) {
     AYNavigationBarTitleViewStyleDefault,  // horizontal center
     AYNavigationBarTitleViewStyleAutomatic // autoadaptation
@@ -54,6 +52,8 @@ typedef NS_ENUM(NSInteger, AYNavigationBarTitleViewStyle) {
 
 @property (nonatomic, strong, readonly) AYNavigationItem *ay_navigationItem;
 
+@property (nonatomic, assign) BOOL ay_prefersNavigationBarHidden;
+
 - (void)registerNavigationBar;
 
 @end
@@ -73,5 +73,25 @@ typedef NS_ENUM(NSInteger, AYNavigationBarTitleViewStyle) {
 @property (nonatomic, assign) BOOL ay_navigationBarHidden;
 
 @property (nonatomic, copy) NSDictionary<NSAttributedStringKey, id> *ay_titleTextAttributes;
+
+@property (nonatomic, assign) BOOL ay_basedNavigationBarAppearanceDisabled;
+
+@end
+
+@interface UINavigationController (FDFullscreenPopGesture)
+
+/// The gesture recognizer that actually handles interactive pop.
+@property (nonatomic, strong, readonly) UIPanGestureRecognizer *fd_fullscreenPopGestureRecognizer;
+
+@end
+
+/// Allows any view controller to disable interactive pop gesture, which might
+/// be necessary when the view controller itself handles pan gesture in some
+/// cases.
+@interface UIViewController (FDFullscreenPopGesture)
+
+/// Whether the interactive pop gesture is disabled when contained in a navigation
+/// stack.
+@property (nonatomic, assign) BOOL fd_interactivePopDisabled;
 
 @end

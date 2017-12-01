@@ -14,9 +14,9 @@
 		465DA7361FD1020B00BAC8D1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DA7351FD1020B00BAC8D1 /* main.m */; };
 		465DA7401FD1020B00BAC8D1 /* AYNavigationBarDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DA73F1FD1020B00BAC8D1 /* AYNavigationBarDemoTests.m */; };
 		465DA74B1FD1020B00BAC8D1 /* AYNavigationBarDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DA74A1FD1020B00BAC8D1 /* AYNavigationBarDemoUITests.m */; };
-		465DA75E1FD1031400BAC8D1 /* AYNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DA75A1FD1031400BAC8D1 /* AYNavigationBar.m */; };
-		465DA75F1FD1031400BAC8D1 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DA75D1FD1031400BAC8D1 /* UINavigationController+FDFullscreenPopGesture.m */; };
 		465DA7621FD1046E00BAC8D1 /* NextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DA7611FD1046E00BAC8D1 /* NextViewController.m */; };
+		465DA7691FD1084E00BAC8D1 /* AYNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DA7651FD1084E00BAC8D1 /* AYNavigationBar.m */; };
+		465DA76A1FD1084E00BAC8D1 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DA7681FD1084E00BAC8D1 /* UINavigationController+FDFullscreenPopGesture.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,12 +52,12 @@
 		465DA7461FD1020B00BAC8D1 /* AYNavigationBarDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AYNavigationBarDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		465DA74A1FD1020B00BAC8D1 /* AYNavigationBarDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AYNavigationBarDemoUITests.m; sourceTree = "<group>"; };
 		465DA74C1FD1020B00BAC8D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		465DA7591FD1031400BAC8D1 /* AYNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYNavigationBar.h; sourceTree = "<group>"; };
-		465DA75A1FD1031400BAC8D1 /* AYNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYNavigationBar.m; sourceTree = "<group>"; };
-		465DA75C1FD1031400BAC8D1 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
-		465DA75D1FD1031400BAC8D1 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
 		465DA7601FD1046E00BAC8D1 /* NextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NextViewController.h; sourceTree = "<group>"; };
 		465DA7611FD1046E00BAC8D1 /* NextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NextViewController.m; sourceTree = "<group>"; };
+		465DA7641FD1084E00BAC8D1 /* AYNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYNavigationBar.h; sourceTree = "<group>"; };
+		465DA7651FD1084E00BAC8D1 /* AYNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYNavigationBar.m; sourceTree = "<group>"; };
+		465DA7671FD1084E00BAC8D1 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
+		465DA7681FD1084E00BAC8D1 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,8 +108,8 @@
 		465DA7251FD1020B00BAC8D1 /* AYNavigationBarDemo */ = {
 			isa = PBXGroup;
 			children = (
-				465DA7581FD1031400BAC8D1 /* AYNavigationBar */,
-				465DA75B1FD1031400BAC8D1 /* FDFullscreenPopGesture */,
+				465DA7631FD1084E00BAC8D1 /* AYNavigationBar */,
+				465DA7661FD1084E00BAC8D1 /* FDFullscreenPopGesture */,
 				465DA7261FD1020B00BAC8D1 /* AppDelegate.h */,
 				465DA7271FD1020B00BAC8D1 /* AppDelegate.m */,
 				465DA7291FD1020B00BAC8D1 /* ViewController.h */,
@@ -142,22 +142,24 @@
 			path = AYNavigationBarDemoUITests;
 			sourceTree = "<group>";
 		};
-		465DA7581FD1031400BAC8D1 /* AYNavigationBar */ = {
+		465DA7631FD1084E00BAC8D1 /* AYNavigationBar */ = {
 			isa = PBXGroup;
 			children = (
-				465DA7591FD1031400BAC8D1 /* AYNavigationBar.h */,
-				465DA75A1FD1031400BAC8D1 /* AYNavigationBar.m */,
+				465DA7641FD1084E00BAC8D1 /* AYNavigationBar.h */,
+				465DA7651FD1084E00BAC8D1 /* AYNavigationBar.m */,
 			);
-			path = AYNavigationBar;
+			name = AYNavigationBar;
+			path = ../../AYNavigationBar;
 			sourceTree = "<group>";
 		};
-		465DA75B1FD1031400BAC8D1 /* FDFullscreenPopGesture */ = {
+		465DA7661FD1084E00BAC8D1 /* FDFullscreenPopGesture */ = {
 			isa = PBXGroup;
 			children = (
-				465DA75C1FD1031400BAC8D1 /* UINavigationController+FDFullscreenPopGesture.h */,
-				465DA75D1FD1031400BAC8D1 /* UINavigationController+FDFullscreenPopGesture.m */,
+				465DA7671FD1084E00BAC8D1 /* UINavigationController+FDFullscreenPopGesture.h */,
+				465DA7681FD1084E00BAC8D1 /* UINavigationController+FDFullscreenPopGesture.m */,
 			);
-			path = FDFullscreenPopGesture;
+			name = FDFullscreenPopGesture;
+			path = ../../FDFullscreenPopGesture;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,12 +294,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				465DA75F1FD1031400BAC8D1 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
+				465DA76A1FD1084E00BAC8D1 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				465DA7621FD1046E00BAC8D1 /* NextViewController.m in Sources */,
 				465DA72B1FD1020B00BAC8D1 /* ViewController.m in Sources */,
+				465DA7691FD1084E00BAC8D1 /* AYNavigationBar.m in Sources */,
 				465DA7361FD1020B00BAC8D1 /* main.m in Sources */,
 				465DA7281FD1020B00BAC8D1 /* AppDelegate.m in Sources */,
-				465DA75E1FD1031400BAC8D1 /* AYNavigationBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

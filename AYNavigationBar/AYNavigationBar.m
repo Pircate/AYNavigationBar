@@ -390,7 +390,9 @@ const CGFloat AYNavigationBarShowLargeTitleViewDuration = 0.5;
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self removeObserver:self forKeyPath:@"navigationItem.title"];
+    if (_identifier) {
+        [self removeObserver:self forKeyPath:@"navigationItem.title"];
+    }
 }
 
 #pragma mark - over write

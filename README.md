@@ -1,9 +1,17 @@
 # AYNavigationBar
 
+## Installation
+
+Use CocoaPods  
+
+``` ruby
+pod 'AYNavigationBar', '1.0.5'
+```
+
 ## usage
 
 ### Comparison of system methods
-```Objective-C
+``` objc
 self.navigationItem.title = @"首页";
 self.ay_navigationItem.title = @"首页";
 

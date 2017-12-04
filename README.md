@@ -8,7 +8,7 @@ Use CocoaPods
 pod 'AYNavigationBar', '1.0.5'
 ```
 
-## usage
+## Usage
 
 ### To enable AYNavigationBar of a navigation controller
 

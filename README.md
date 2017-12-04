@@ -10,6 +10,13 @@ pod 'AYNavigationBar', '1.0.5'
 
 ## usage
 
+### To able AYNavigationBar of a navigation controller
+
+``` objc
+UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+nav.ay_navigationBarEnabled = YES;
+```
+
 ### Comparison of system methods
 ``` objc
 self.navigationItem.title = @"首页";

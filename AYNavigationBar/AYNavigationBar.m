@@ -502,7 +502,7 @@ const CGFloat AYNavigationBarShowLargeTitleViewDuration = 0.5;
     if (self.willHidden) barFrame.origin.y = -barFrame.size.height;
     self.frame = barFrame;
     
-    _backgroundView.frame = [self barBackgroundFrame:statusBarHeight];
+    _backgroundView.frame = [self barBackgroundFrame];
     _backgroundImageView.frame = _backgroundView.bounds;
     _shadowImageView.frame = [self barShadowViewFrame];
     _visualEffectView.frame = _backgroundView.bounds;
@@ -513,9 +513,9 @@ const CGFloat AYNavigationBarShowLargeTitleViewDuration = 0.5;
     [self ay_showLargeTitle:(!isLandscape && _prefersLargeTitles)];
 }
 
-- (CGRect)barBackgroundFrame:(CGFloat)statusBarHeight
+- (CGRect)barBackgroundFrame
 {
-    return CGRectMake(0, -statusBarHeight, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame) + statusBarHeight);
+    return CGRectMake(0, -self.frame.origin.y, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame) + self.frame.origin.y);
 }
 
 - (CGRect)barShadowViewFrame
@@ -536,8 +536,7 @@ const CGFloat AYNavigationBarShowLargeTitleViewDuration = 0.5;
 - (void)ay_addBackgroundView
 {
     if (!_backgroundView) {
-        _backgroundView = [[UIView alloc] initWithFrame:[self barBackgroundFrame:kAYNavigationBarStatusBarHeight]];
-        _backgroundView.alpha = 1.f;
+        _backgroundView = [[UIView alloc] initWithFrame:[self barBackgroundFrame]];
         [self addSubview:_backgroundView];
     }
 }

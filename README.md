@@ -1,7 +1,8 @@
 # AYNavigationBar
-## usage
-### Comparison of system methods
 
+## usage
+
+### Comparison of system methods
 ```Objective-C
 self.navigationItem.title = @"首页";
 self.ay_navigationItem.title = @"首页";

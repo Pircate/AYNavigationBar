@@ -1,7 +1,7 @@
 //
 //  AYNavigationBar.m
 //
-//  Created by 高翔 on 2017/9/20.
+//  Created by gaoX on 2017/9/20.
 //  Copyright © 2017年 adinnet. All rights reserved.
 //
 

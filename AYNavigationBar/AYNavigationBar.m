@@ -746,13 +746,6 @@ const CGFloat AYNavigationBarShowLargeTitleViewDuration = 0.5;
 #pragma mark - public
 - (void)registerNavigationBar
 {
-    if (!self.ay_navigationBar) {
-        self.ay_navigationBar = [[AYNavigationBar alloc] initWithIdentifier:NSStringFromClass(self.class)];
-    }
-    if (!self.ay_navigationItem) {
-        self.ay_navigationItem = [[AYNavigationItem alloc] init];
-    }
-    self.ay_navigationBar.navigationItem = self.ay_navigationItem;
     if (self.navigationItem.title) {
         self.ay_navigationItem.title = self.navigationItem.title;
     }
@@ -828,6 +821,7 @@ const CGFloat AYNavigationBarShowLargeTitleViewDuration = 0.5;
         navigationBar = [[AYNavigationBar alloc] initWithIdentifier:NSStringFromClass(self.class)];
         objc_setAssociatedObject(self, @selector(ay_navigationBar), navigationBar, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
+    navigationBar.navigationItem = self.ay_navigationItem;
     return navigationBar;
 }
 

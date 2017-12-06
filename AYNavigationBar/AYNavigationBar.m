@@ -823,7 +823,12 @@ const CGFloat AYNavigationBarShowLargeTitleViewDuration = 0.5;
 #pragma mark - getter & setter
 - (AYNavigationBar *)ay_navigationBar
 {
-    return objc_getAssociatedObject(self, _cmd);
+    AYNavigationBar *navigationBar = objc_getAssociatedObject(self, _cmd);
+    if (!navigationBar) {
+        navigationBar = [[AYNavigationBar alloc] initWithIdentifier:NSStringFromClass(self.class)];
+        objc_setAssociatedObject(self, @selector(ay_navigationBar), navigationBar, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return navigationBar;
 }
 
 - (void)setAy_navigationBar:(AYNavigationBar *)ay_navigationBar

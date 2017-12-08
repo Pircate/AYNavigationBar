@@ -713,12 +713,7 @@ const CGFloat AYNavigationBarShowLargeTitleViewDuration = 0.5;
         [self registerNavigationBar];
         
         if (self.navigationController.viewControllers.count > 1) {
-            if (self.navigationController.ay_backBarButton) {
-                [self ay_setCustomBackBarButton];
-            }
-            else {
-                [self ay_updateDefaultBackBarButton];
-            }
+            [self ay_setupBackBarButton];
         }
     }
 }
@@ -763,42 +758,13 @@ const CGFloat AYNavigationBarShowLargeTitleViewDuration = 0.5;
 }
 
 #pragma mark - private
-- (void)ay_updateDefaultBackBarButton
+- (void)ay_setupBackBarButton
 {
     UIButton *backBarButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    NSString *title = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2].ay_navigationItem.title;
-    CGSize titleSize = [title sizeWithAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:17.f]}];
-    if (!title || titleSize.width > AYNavigationBarBackButtonTitleMaxWidth) {
-        NSArray *appLanguages = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"];
-        NSString *languageName = appLanguages.firstObject;
-        BOOL isChinese = [languageName isEqualToString:@"zh-Hans-US"];
-        title = isChinese ? @"く返回" : @"くBack";
-        backBarButton.frame = isChinese ? CGRectMake(0, 0, 64, 44) : CGRectMake(0, 0, 70, 44);
-    }
-    else {
-        backBarButton.frame = CGRectMake(0, 0, titleSize.width + 30, 44);
-        title = [NSString stringWithFormat:@"く%@", title];
-    }
-    NSMutableAttributedString *mAttributedText = [[NSMutableAttributedString alloc] initWithString:title];
-    [mAttributedText setAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:22]} range:NSMakeRange(0, 1)];
-    [mAttributedText setAttributes:@{NSBaselineOffsetAttributeName: @(2.5), NSFontAttributeName: [UIFont systemFontOfSize:17.f]} range:NSMakeRange(1, mAttributedText.length - 1)];
-    [backBarButton setAttributedTitle:mAttributedText forState:UIControlStateNormal];
-    [backBarButton addTarget:self action:@selector(backBarButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    self.ay_navigationItem.leftBarButton = backBarButton;
-}
-
-- (void)ay_setCustomBackBarButton
-{
-    UIButton *backBarButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    backBarButton.frame = self.navigationController.ay_backBarButton.frame;
-    NSString *title = [self.navigationController.ay_backBarButton titleForState:UIControlStateNormal];
-    UIImage *image = [self.navigationController.ay_backBarButton imageForState:UIControlStateNormal];
-    [backBarButton setTitle:title forState:UIControlStateNormal];
-    backBarButton.titleEdgeInsets = self.navigationController.ay_backBarButton.titleEdgeInsets;
-    if (image) {
-        [backBarButton setImage:image forState:UIControlStateNormal];
-        backBarButton.imageEdgeInsets = self.navigationController.ay_backBarButton.imageEdgeInsets;
-    }
+    backBarButton.clipsToBounds = YES;
+    [backBarButton sizeToFit];
+    [backBarButton setTitle:@"‹" forState:UIControlStateNormal];
+    backBarButton.titleLabel.font = [UIFont fontWithName:@"Menlo-Regular" size:49.f];
     [backBarButton addTarget:self action:@selector(backBarButtonAction) forControlEvents:UIControlEventTouchUpInside];
     self.ay_navigationItem.leftBarButton = backBarButton;
 }
@@ -918,19 +884,6 @@ const CGFloat AYNavigationBarShowLargeTitleViewDuration = 0.5;
     self.topViewController.ay_navigationBar.shadowImage = ay_barShadowImage;
 }
 
-- (UIButton *)ay_backBarButton
-{
-    return objc_getAssociatedObject(self, _cmd);
-}
-
-- (void)setAy_backBarButton:(UIButton *)ay_backBarButton
-{
-    objc_setAssociatedObject(self, @selector(ay_backBarButton), ay_backBarButton, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    if (self.viewControllers.count > 1) {
-        [self.topViewController ay_setCustomBackBarButton];
-    }
-}
-
 - (BOOL)ay_navigationBarHidden
 {
     return [objc_getAssociatedObject(self, _cmd) boolValue];
@@ -957,6 +910,11 @@ const CGFloat AYNavigationBarShowLargeTitleViewDuration = 0.5;
 - (AYNavigationBar *)ay_navigationBar
 {
     return self.topViewController.ay_navigationBar;
+}
+
+- (AYNavigationItem *)ay_navigationItem
+{
+    return self.topViewController.ay_navigationItem;
 }
 
 @end

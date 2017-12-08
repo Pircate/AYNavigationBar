@@ -66,8 +66,6 @@ typedef NS_ENUM(NSInteger, AYNavigationBarTitleViewStyle) {
 
 @property (nonatomic, strong) UIImage *ay_barShadowImage;
 
-@property (nonatomic, strong) UIButton *ay_backBarButton;
-
 @property (nonatomic, assign) BOOL ay_navigationBarHidden;
 
 @property (nonatomic, copy) NSDictionary<NSAttributedStringKey, id> *ay_titleTextAttributes;

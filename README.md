@@ -5,7 +5,7 @@
 Use CocoaPods  
 
 ``` ruby
-pod 'AYNavigationBar', '1.0.7'
+pod 'AYNavigationBar', '1.0.8'
 ```
 
 ## Usage

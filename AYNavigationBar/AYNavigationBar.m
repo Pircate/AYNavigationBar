@@ -15,7 +15,6 @@ const CGFloat AYNavigationBarLargeTitleMinHeight = 49.f;
 const CGFloat AYNavigationBarPortraitHeight = 44.f;
 const CGFloat AYNavigationBarLandscapeHeight = 32.f;
 const CGFloat AYNavigationBarShadowViewHeight = 1.f / 3;
-const CGFloat AYNavigationBarBackButtonTitleMaxWidth = 80.f;
 const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
 const CGFloat AYNavigationBarShowLargeTitleViewDuration = 0.5;
 

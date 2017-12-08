@@ -64,8 +64,4 @@ UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithCustomView:righ
 self.navigationItem.rightBarButtonItems = @[rightItem, rightBarItem];
 self.ay_navigationItem.rightBarItems = @[rightBtn, rightButton];
 
-
-UIButton *backBarButton = [UIButton buttonWithType:UIButtonTypeSystem];
-backBarButton.frame = CGRectMake(0, 0, 38, 44);
-[backBarButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
 ```

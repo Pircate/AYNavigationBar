@@ -432,9 +432,7 @@ const CGFloat AYNavigationBarShowLargeTitleViewDuration = 0.5;
     if (hidden) {
         if (animated) {
             [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
-                CGRect frame = self.frame;
-                frame.origin.y = -self.bounds.size.height;
-                self.frame = frame;
+                [self ay_layoutIfNeeded];
             } completion:^(BOOL finished) {
                 if (finished) {
                     if (self.frame.origin.y < 0) {
@@ -444,9 +442,7 @@ const CGFloat AYNavigationBarShowLargeTitleViewDuration = 0.5;
             }];
         }
         else {
-            CGRect frame = self.frame;
-            frame.origin.y = -self.bounds.size.height;
-            self.frame = frame;
+            [self ay_layoutIfNeeded];
             [super setHidden:hidden];
         }
     }
@@ -454,11 +450,11 @@ const CGFloat AYNavigationBarShowLargeTitleViewDuration = 0.5;
         [super setHidden:hidden];
         if (animated) {
             [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
-                self.frame = kAYNavigationBarFrame;
+                [self ay_layoutIfNeeded];
             }];
         }
         else {
-            self.frame = kAYNavigationBarFrame;
+            [self ay_layoutIfNeeded];
         }
     }
 }

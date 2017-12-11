@@ -1,7 +1,8 @@
 # AYNavigationBar
 
 ## Overview
-   ![snapshot](https://github.com/CodeABug/AYNavigationBar/blob/master/QQ20171211-113833-HD.gif)
+   ![snapshot](https://github.com/CodeABug/AYNavigationBar/blob/master/push-pop.gif)
+   ![snapshot](https://github.com/CodeABug/AYNavigationBar/blob/master/hidden.gif)
 
 ## Installation
 

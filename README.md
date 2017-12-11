@@ -43,7 +43,7 @@ titleView.backgroundColor = [UIColor yellowColor];
 // self.navigationController.ay_barTintColor = [UIColor cyanColor];
 // self.ay_navigationBar.backgroundColor = [UIColor cyanColor];
 
-// 设置导航栏底部阴影线条
+// 设置导航栏底部阴影图片
 UIImage *image = [[UIImage imageNamed:@"shadow"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 self.navigationController.ay_barShadowImage = image;
 self.ay_navigationBar.shadowImage = image;

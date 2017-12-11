@@ -1,5 +1,8 @@
 # AYNavigationBar
 
+## Overview
+   ![snapshot](https://github.com/CodeABug/AYNavigationBar/blob/master/QQ20171211-113833-HD.gif)
+
 ## Installation
 
 Use CocoaPods  
@@ -73,5 +76,3 @@ self.ay_navigationBar.largeTitleTextAttributes = @{NSFontAttributeName: [UIFont 
 // 隐藏导航栏
 [self.ay_navigationBar setHidden:YES animated:YES];
 ```
-### Overview
-   ![img](https://github.com/CodeABug/AYNavigationBar/blob/master/QQ20171211-113833-HD.gif)

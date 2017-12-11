@@ -17,7 +17,7 @@ UINavigationController *nav = [[UINavigationController alloc] initWithRootViewCo
 nav.ay_navigationBarEnabled = YES;
 ```
 
-### Comparison of system methods
+### Setting
 ``` objc
 // 设置标题
 self.ay_navigationItem.title = @"首页";

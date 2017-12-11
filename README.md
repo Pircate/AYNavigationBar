@@ -2,7 +2,6 @@
 
 ## Overview
    ![snapshot](https://github.com/CodeABug/AYNavigationBar/blob/master/push-pop.gif)
-   ![snapshot](https://github.com/CodeABug/AYNavigationBar/blob/master/hidden.gif)
 
 ## Installation
 

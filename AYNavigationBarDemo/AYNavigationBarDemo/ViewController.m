@@ -39,16 +39,12 @@
     self.ay_navigationItem.title = @"首页";
 
     // 设置标题文本属性
-    // 设置整个导航控制器所有viewController的文本属性
-    // self.navigationController.ay_titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor blueColor]};
-    // 设置当前viewController的文本属性
     // self.ay_navigationItem.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor orangeColor]};
     
     UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1000, 30)];
     titleView.layer.cornerRadius = 5;
     titleView.layer.masksToBounds = YES;
     titleView.backgroundColor = [UIColor yellowColor];
-
     // 设置标题视图
     // self.ay_navigationItem.titleView = titleView;
 
@@ -56,12 +52,10 @@
     // self.ay_navigationItem.titleViewStyle = AYNavigationBarTitleViewStyleAutomatic;
 
     // 设置导航栏背景色
-    // self.navigationController.ay_barTintColor = [UIColor cyanColor];
     // self.ay_navigationBar.backgroundColor = [UIColor cyanColor];
 
     // 设置导航栏底部阴影图片
     UIImage *image = [[UIImage imageNamed:@"shadow"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    self.navigationController.ay_barShadowImage = image;
     self.ay_navigationBar.shadowImage = image;
 
     // 设置导航栏背景图片

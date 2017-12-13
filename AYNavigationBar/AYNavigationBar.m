@@ -201,7 +201,7 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
 
 - (void)setTitle:(NSString *)title
 {
-    _title = title;
+    _title = [title copy];
     _titleLabel.hidden = NO;
     _titleLabel.attributedText = [[NSAttributedString alloc] initWithString:title ?: @"" attributes:self.titleTextAttributes];
     

@@ -700,12 +700,10 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
         if (!self.navigationController.ay_navigationBarEnabled) {
             return;
         }
-
-        if (!self.ay_navigationBar.enabled) {
-            return;
-        }
         
         [self registerNavigationBar];
+
+        self.fd_prefersNavigationBarHidden = self.ay_navigationBar.enabled;
         
         if (self.navigationController.viewControllers.count > 1) {
             [self ay_setupBackBarButton];
@@ -720,10 +718,6 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
     if (self.navigationController) {
         
         if (!self.navigationController.ay_navigationBarEnabled) {
-            return;
-        }
-
-        if (!self.ay_navigationBar.enabled) {
             return;
         }
         

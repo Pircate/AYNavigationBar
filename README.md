@@ -78,4 +78,7 @@ self.ay_navigationBar.largeTitleTextAttributes = @{NSFontAttributeName: [UIFont 
 
 // 隐藏导航栏
 [self.ay_navigationBar setHidden:YES animated:YES];
+
+// 单个页面禁用AYNavigationBar使用UINavigationBar
+self.ay_navigationBarDisabled = YES;
 ```

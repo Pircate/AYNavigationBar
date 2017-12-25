@@ -89,6 +89,8 @@
 - (void)rightBtnAction
 {
     ViewController *vc = [[ViewController alloc] init];
+    // 禁用AYNavigationBar使用UINavigationBar
+    // vc.ay_navigationBar.enabled = NO;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

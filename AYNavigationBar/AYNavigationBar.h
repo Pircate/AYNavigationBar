@@ -34,6 +34,8 @@ typedef NS_ENUM(NSInteger, AYNavigationBarTitleViewStyle) {
 
 @interface AYNavigationBar : UIView
 
+@property (nonatomic, assign) BOOL enabled;
+
 @property (nonatomic, strong) UIImage *backgroundImage;
 
 @property (nonatomic, strong) UIImage *shadowImage;

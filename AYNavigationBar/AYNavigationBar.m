@@ -376,7 +376,8 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
 {
     self = [super initWithFrame:kAYNavigationBarFrame];
     if (self) {
-        
+
+        _enabled = YES;
         _identifier = identifier;
         
         [self ay_addObserver];
@@ -699,6 +700,10 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
         if (!self.navigationController.ay_navigationBarEnabled) {
             return;
         }
+
+        if (!self.ay_navigationBar.enabled) {
+            return;
+        }
         
         [self registerNavigationBar];
         
@@ -715,6 +720,10 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
     if (self.navigationController) {
         
         if (!self.navigationController.ay_navigationBarEnabled) {
+            return;
+        }
+
+        if (!self.ay_navigationBar.enabled) {
             return;
         }
         

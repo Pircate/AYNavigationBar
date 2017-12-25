@@ -377,7 +377,6 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
     self = [super initWithFrame:kAYNavigationBarFrame];
     if (self) {
 
-        _enabled = YES;
         _identifier = identifier;
         
         [self ay_addObserver];
@@ -703,7 +702,7 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
         
         [self registerNavigationBar];
 
-        self.fd_prefersNavigationBarHidden = self.ay_navigationBar.enabled;
+        self.fd_prefersNavigationBarHidden = !self.ay_navigationBarDisabled;
         
         if (self.navigationController.viewControllers.count > 1) {
             [self ay_setupBackBarButton];
@@ -766,6 +765,17 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
 }
 
 #pragma mark - getter & setter
+- (BOOL)ay_navigationBarDisabled
+{
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
+}
+
+- (void)setAy_navigationBarDisabled:(BOOL)ay_navigationBarDisabled
+{
+    objc_setAssociatedObject(self, @selector(ay_navigationBarDisabled), @(ay_navigationBarDisabled), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    self.fd_prefersNavigationBarHidden = !ay_navigationBarDisabled;
+}
+
 - (AYNavigationBar *)ay_navigationBar
 {
     AYNavigationBar *navigationBar = objc_getAssociatedObject(self, _cmd);

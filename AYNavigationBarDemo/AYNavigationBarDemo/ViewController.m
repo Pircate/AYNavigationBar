@@ -90,7 +90,7 @@
 {
     ViewController *vc = [[ViewController alloc] init];
     // 禁用AYNavigationBar使用UINavigationBar
-    // vc.ay_navigationBar.enabled = NO;
+     vc.ay_navigationBarDisabled = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

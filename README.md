@@ -81,4 +81,10 @@ self.ay_navigationBar.largeTitleTextAttributes = @{NSFontAttributeName: [UIFont 
 
 // 单个页面禁用AYNavigationBar使用UINavigationBar
 self.ay_navigationBarDisabled = YES;
+
+// 设置导航栏垂直位置偏移量
+// self.ay_navigationBar.verticalOffset = -44.f;
+    
+// 设置导航栏内容高度偏移量
+// self.ay_navigationBar.contentOffset = -14.f;
 ```

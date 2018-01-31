@@ -488,11 +488,14 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
     if (_prefersLargeTitles && !isLandscape) {
         largeTitleViewHeight = [self ay_largeTitleViewHeight];
     }
+    
     CGFloat statusBarHeight = isLandscape ? 0.f : (kAYNavigationBarIsIPhoneX ? 44.f : 20.f);
+    CGFloat contentHeight = isLandscape ? AYNavigationBarLandscapeHeight : AYNavigationBarPortraitHeight;
+    if (!isLandscape) contentHeight += self.contentOffset;
+    
     CGRect barFrame = kAYNavigationBarDefaultFrame;
     barFrame.origin.y = statusBarHeight + self.verticalOffset;
-    barFrame.size.height = isLandscape ? AYNavigationBarLandscapeHeight : AYNavigationBarPortraitHeight;
-    barFrame.size.height += self.contentOffset;
+    barFrame.size.height = contentHeight;
     barFrame.size.height += largeTitleViewHeight;
     if (self.willHidden) barFrame.origin.y = -barFrame.size.height;
     self.frame = barFrame;
@@ -502,7 +505,13 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
     _shadowImageView.frame = [self barShadowViewFrame];
     _visualEffectView.frame = _backgroundView.bounds;
     
-    _navigationItem.frame = [self barContentFrame];
+    CGRect contentframe = kAYBarContentViewDefaultFrame;
+    contentframe.size.height = contentHeight;
+    if ([self ay_needsFixedSpace]) {
+        contentframe.origin.x = AYNavigationBarIPhoneXFixedSpaceWidth;
+        contentframe.size.width = kAYNavigationBarScreenWidth - AYNavigationBarIPhoneXFixedSpaceWidth * 2;
+    }
+    _navigationItem.frame = contentframe;
     
     _largeTitleView.frame = CGRectMake(0, CGRectGetMaxY(_navigationItem.frame), CGRectGetWidth(self.frame), largeTitleViewHeight);
     [self ay_showLargeTitle:(!isLandscape && _prefersLargeTitles)];
@@ -516,17 +525,6 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
 - (CGRect)barShadowViewFrame
 {
     return CGRectMake(0, CGRectGetHeight(_backgroundView.frame), CGRectGetWidth(_backgroundView.frame), AYNavigationBarShadowViewHeight);
-}
-
-- (CGRect)barContentFrame
-{
-    CGRect frame = kAYBarContentViewDefaultFrame;
-    frame.size.height += self.contentOffset;
-    if ([self ay_needsFixedSpace]) {
-        frame.origin.x = AYNavigationBarIPhoneXFixedSpaceWidth;
-        frame.size.width = kAYNavigationBarScreenWidth - AYNavigationBarIPhoneXFixedSpaceWidth * 2;
-    }
-    return frame;
 }
 
 - (void)ay_addBackgroundView

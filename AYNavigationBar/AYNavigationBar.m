@@ -401,15 +401,25 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
     [super setFrame:frame];
 }
 
+- (CGFloat)alpha
+{
+    return self.backgroundView.alpha;
+}
+
 - (void)setAlpha:(CGFloat)alpha
 {
-    _backgroundView.alpha = alpha;
+    self.backgroundView.alpha = alpha;
+}
+
+- (UIColor *)backgroundColor
+{
+    return self.visualEffectView.backgroundColor;
 }
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor
 {
-    _visualEffectView.backgroundColor = backgroundColor;
-    _visualEffectView.effect = backgroundColor ? nil : [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+    self.visualEffectView.backgroundColor = backgroundColor;
+    self.visualEffectView.effect = backgroundColor ? nil : [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
 }
 
 - (void)setHidden:(BOOL)hidden

@@ -92,6 +92,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - action
 - (void)leftBtnAction
 {
     PresentedViewController *vc = [[PresentedViewController alloc] init];

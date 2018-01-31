@@ -20,27 +20,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.view.backgroundColor = [UIColor greenColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     
-    [self registerNavigationBar];
+    self.ay_navigationBar.backgroundColor = [UIColor blueColor];
     self.ay_navigationItem.title = @"下一页";
-    
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-    button.frame = CGRectMake(0, 0, 80, 44);
-    [button setTitle:@"dismiss" forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(dismissAction) forControlEvents:UIControlEventTouchUpInside];
-    self.ay_navigationItem.leftBarButton = button;
+    self.ay_navigationItem.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)dismissAction
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

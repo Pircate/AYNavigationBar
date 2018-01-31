@@ -8,10 +8,15 @@
 
 #import "ViewController.h"
 #import "NextViewController.h"
+#import "PresentedViewController.h"
 
 #import "AYNavigationBar.h"
 
-@interface ViewController ()
+@interface ViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) UITableView *tableView;
+
+@property (nonatomic, strong) NSArray *dataSource;
 
 @end
 
@@ -20,21 +25,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor greenColor];
-
-    UISwitch *st = [[UISwitch alloc] init];
-    st.center = self.view.center;
-    st.onTintColor = [UIColor blueColor];
-    [st addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:st];
-
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-    button.frame = CGRectMake(0, 0, 80, 44);
-    button.center = CGPointMake(self.view.center.x, CGRectGetMinY(st.frame) - 80);
-    [button setTitle:@"present" forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
-
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.tableView];
     // 设置标题
     self.ay_navigationItem.title = @"首页";
 
@@ -60,13 +52,21 @@
 
     // 设置导航栏背景图片
     // self.ay_navigationBar.backgroundImage = [UIImage imageNamed:@"nav"];
+    
+    UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    leftBtn.frame = CGRectMake(0, 0, 64, 44);
+    [leftBtn setTitle:@"present" forState:UIControlStateNormal];
+    [leftBtn addTarget:self action:@selector(leftBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    // 设置导航栏左边按钮
+    self.ay_navigationItem.leftBarButton = leftBtn;
 
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     rightBtn.frame = CGRectMake(0, 0, 44, 44);
     [rightBtn setTitle:@"push" forState:UIControlStateNormal];
     [rightBtn addTarget:self action:@selector(rightBtnAction) forControlEvents:UIControlEventTouchUpInside];
 
-    // 设置导航栏左右按钮
+    // 设置导航栏右边按钮
     self.ay_navigationItem.rightBarButton = rightBtn;
 
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
@@ -92,24 +92,91 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)leftBtnAction
+{
+    PresentedViewController *vc = [[PresentedViewController alloc] init];
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
 - (void)rightBtnAction
 {
-    ViewController *vc = [[ViewController alloc] init];
+    NextViewController *vc = [[NextViewController alloc] init];
     // 禁用AYNavigationBar使用UINavigationBar
     // vc.ay_navigationBarDisabled = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)switchAction:(UISwitch *)sender
+#pragma mark - UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // 隐藏导航栏
-    [self.ay_navigationBar setHidden:sender.on animated:YES];
+    return self.dataSource.count;
 }
 
-- (void)buttonAction:(UIButton *)sender
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NextViewController *vc = [[NextViewController alloc] init];
-    [self presentViewController:vc animated:YES completion:nil];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID" forIndexPath:indexPath];
+    cell.textLabel.text = self.dataSource[indexPath.row];
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    switch (indexPath.row) {
+        case 0:
+            self.ay_navigationBar.hidden = !self.ay_navigationBar.hidden;
+            break;
+        case 1:
+            [self.ay_navigationBar setHidden:!self.ay_navigationBar.hidden animated:YES];
+            break;
+        case 2:
+        {
+            self.ay_navigationBar.prefersLargeTitles = !self.ay_navigationBar.prefersLargeTitles;
+        }
+            break;
+        case 3:
+        {
+            [UIView animateWithDuration:0.25 animations:^{
+                self.ay_navigationBar.verticalOffset = self.ay_navigationBar.verticalOffset == -44.f ? 0 : -44.f;
+            }];
+        }
+            break;
+        case 4:
+            self.ay_navigationBar.contentOffset = self.ay_navigationBar.contentOffset == -14.f ? 0 : -14.f;
+            break;
+            
+        default:
+            break;
+    }
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.25 animations:^{
+            self.tableView.contentInset = UIEdgeInsetsMake(CGRectGetMaxY(self.ay_navigationBar.frame), 0, 0, 0);
+        }];
+    });
+}
+
+#pragma mark - getter
+- (UITableView *)tableView
+{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        _tableView.dataSource = self;
+        _tableView.delegate = self;
+        _tableView.contentInset = UIEdgeInsetsMake(CGRectGetMaxY(self.ay_navigationBar.frame), 0, 0, 0);
+        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cellID"];
+    }
+    return _tableView;
+}
+
+- (NSArray *)dataSource
+{
+    if (!_dataSource) {
+        _dataSource = @[@"隐藏或显示导航栏无动画", @"隐藏或显示导航栏有动画", @"设置导航栏大标题", @"设置导航栏垂直位置偏移量", @"设置导航栏内容高度偏移量"];
+    }
+    return _dataSource;
 }
 
 @end

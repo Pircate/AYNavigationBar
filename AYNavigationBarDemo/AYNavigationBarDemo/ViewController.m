@@ -140,6 +140,7 @@
         {
             [UIView animateWithDuration:0.25 animations:^{
                 self.ay_navigationBar.verticalOffset = self.ay_navigationBar.verticalOffset == -44.f ? 0 : -44.f;
+                self.ay_navigationItem.alpha = self.ay_navigationBar.verticalOffset == -44.f ? 0 : 1;
             }];
         }
             break;

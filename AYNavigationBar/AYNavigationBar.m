@@ -491,7 +491,7 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
     contentViewHeight = isLandscape ? AYNavigationBarLandscapeHeight : AYNavigationBarPortraitHeight;
     CGRect barFrame = kAYNavigationBarFrame;
     CGFloat statusBarHeight = isLandscape ? 0.f : (kAYNavigationBarIsIPhoneX ? 44.f : 20.f);
-    barFrame.origin.y = statusBarHeight;
+    barFrame.origin.y = statusBarHeight + self.verticalOffset;
     barFrame.size.height += largeTitleViewHeight;
     if (self.willHidden) barFrame.origin.y = -barFrame.size.height;
     self.frame = barFrame;
@@ -669,6 +669,13 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
         
         [self ay_layoutIfNeeded];
     }
+}
+
+- (void)setVerticalOffset:(CGFloat)verticalOffset
+{
+    _verticalOffset = verticalOffset;
+    
+    [self ay_layoutIfNeeded];
 }
 
 @end

@@ -42,6 +42,8 @@ typedef NS_ENUM(NSInteger, AYNavigationBarTitleViewStyle) {
 
 @property (nonatomic, copy) NSDictionary<NSAttributedStringKey, id> *largeTitleTextAttributes;
 
+@property (nonatomic, assign) CGFloat verticalOffset;
+
 - (void)setHidden:(BOOL)hidden animated:(BOOL)animated;
 
 @end

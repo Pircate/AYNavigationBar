@@ -79,6 +79,9 @@
     // self.ay_navigationBar.prefersLargeTitles = YES;
     // 设置大标题文本属性
     // self.ay_navigationBar.largeTitleTextAttributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:30]};
+    
+    // 设置导航栏垂直位移
+    // self.ay_navigationBar.verticalOffset = -44.f;
 }
 
 - (void)didReceiveMemoryWarning {

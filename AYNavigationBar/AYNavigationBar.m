@@ -10,7 +10,7 @@
 
 #import <objc/runtime.h>
 
-CGFloat contentViewHeight = 44.f;
+const CGFloat AYNavigationBarDefaultHeight = 44.f;
 const CGFloat AYNavigationBarLargeTitleMinHeight = 49.f;
 const CGFloat AYNavigationBarPortraitHeight = 44.f;
 const CGFloat AYNavigationBarLandscapeHeight = 32.f;
@@ -21,8 +21,8 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
 #define kAYNavigationBarStatusBarHeight [UIApplication sharedApplication].statusBarFrame.size.height
 #define kAYNavigationBarScreenWidth [UIScreen mainScreen].bounds.size.width
 
-#define kAYNavigationBarFrame CGRectMake(0, kAYNavigationBarStatusBarHeight, kAYNavigationBarScreenWidth, contentViewHeight)
-#define kAYBarContentViewFrame CGRectMake(0, 0, kAYNavigationBarScreenWidth, contentViewHeight)
+#define kAYNavigationBarDefaultFrame CGRectMake(0, kAYNavigationBarStatusBarHeight, kAYNavigationBarScreenWidth, AYNavigationBarDefaultHeight)
+#define kAYBarContentViewDefaultFrame CGRectMake(0, 0, kAYNavigationBarScreenWidth, AYNavigationBarDefaultHeight)
 
 #pragma mark - AYNavigationItem
 @interface AYNavigationItem ()
@@ -39,7 +39,7 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
 
 - (instancetype)init
 {
-    self = [super initWithFrame:kAYBarContentViewFrame];
+    self = [super initWithFrame:kAYBarContentViewDefaultFrame];
     if (self) {
         
         _titleViewStyle = AYNavigationBarTitleViewStyleDefault;
@@ -81,7 +81,7 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
 - (void)updateTitleLabelFrame
 {
     CGFloat offset = MAX(self.leftOffset, self.rightOffset) * 2;
-    _titleLabel.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame) - offset, contentViewHeight);
+    _titleLabel.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame) - offset, CGRectGetHeight(self.frame));
     _titleLabel.center = CGPointMake(CGRectGetWidth(self.frame) / 2, CGRectGetHeight(self.frame) / 2);
 }
 
@@ -90,17 +90,17 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
     if (self.titleViewStyle == AYNavigationBarTitleViewStyleAutomatic) {
         CGFloat titleViewMaxWidth = CGRectGetWidth(self.frame) - self.leftOffset - self.rightOffset;
         CGRect frame = self.titleViewFrame;
-        frame.size.height = frame.size.height <= contentViewHeight ? frame.size.height : contentViewHeight;
+        frame.size.height = frame.size.height <= CGRectGetHeight(self.frame) ? frame.size.height : CGRectGetHeight(self.frame);
         frame.size.width = frame.size.width <= titleViewMaxWidth ? frame.size.width : titleViewMaxWidth;
         frame.origin.x = self.leftOffset;
-        frame.origin.y = (contentViewHeight - frame.size.height) / 2;
+        frame.origin.y = (CGRectGetHeight(self.frame) - frame.size.height) / 2;
         _titleView.frame = frame;
     }
     else {
         CGFloat offset = MAX(self.leftOffset, self.rightOffset) * 2;
         CGFloat titleViewMaxWidth = CGRectGetWidth(self.frame) - offset;
         CGRect frame = self.titleViewFrame;
-        frame.size.height = frame.size.height <= contentViewHeight ? frame.size.height : contentViewHeight;
+        frame.size.height = frame.size.height <= CGRectGetHeight(self.frame) ? frame.size.height : CGRectGetHeight(self.frame);
         frame.size.width = frame.size.width <= titleViewMaxWidth ? frame.size.width : titleViewMaxWidth;
         _titleView.frame = frame;
         _titleView.center = CGPointMake(self.center.x, CGRectGetHeight(self.frame) / 2);
@@ -147,8 +147,8 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
 {
     CGRect frame = _leftBarButton.frame;
     frame.origin.x = 0.f;
-    frame.size.height = frame.size.height > contentViewHeight ? contentViewHeight : frame.size.height;
-    frame.origin.y = (contentViewHeight - frame.size.height) / 2;
+    frame.size.height = frame.size.height > CGRectGetHeight(self.frame) ? CGRectGetHeight(self.frame) : frame.size.height;
+    frame.origin.y = (CGRectGetHeight(self.frame) - frame.size.height) / 2;
     _leftBarButton.frame = frame;
 }
 
@@ -159,8 +159,8 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
         [_leftBarItems enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             CGRect frame = obj.frame;
             frame.origin.x = lastItemWidth;
-            frame.size.height = frame.size.height > contentViewHeight ? contentViewHeight : frame.size.height;
-            frame.origin.y = (contentViewHeight - frame.size.height) / 2;
+            frame.size.height = frame.size.height > CGRectGetHeight(self.frame) ? CGRectGetHeight(self.frame) : frame.size.height;
+            frame.origin.y = (CGRectGetHeight(self.frame) - frame.size.height) / 2;
             lastItemWidth += frame.size.width;
             obj.frame = frame;
         }];
@@ -171,8 +171,8 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
 {
     CGRect frame = _rightBarButton.frame;
     frame.origin.x = CGRectGetWidth(self.bounds) - frame.size.width;
-    frame.size.height = frame.size.height > contentViewHeight ? contentViewHeight : frame.size.height;
-    frame.origin.y = (contentViewHeight - frame.size.height) / 2;
+    frame.size.height = frame.size.height > CGRectGetHeight(self.frame) ? CGRectGetHeight(self.frame) : frame.size.height;
+    frame.origin.y = (CGRectGetHeight(self.frame) - frame.size.height) / 2;
     _rightBarButton.frame = frame;
 }
 
@@ -183,8 +183,8 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
         [_rightBarItems enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             CGRect frame = obj.frame;
             frame.origin.x = CGRectGetWidth(self.frame) - frame.size.width - lastItemWidth;
-            frame.size.height = frame.size.height > contentViewHeight ? contentViewHeight : frame.size.height;
-            frame.origin.y = (contentViewHeight - frame.size.height) / 2;
+            frame.size.height = frame.size.height > CGRectGetHeight(self.frame) ? CGRectGetHeight(self.frame) : frame.size.height;
+            frame.origin.y = (CGRectGetHeight(self.frame) - frame.size.height) / 2;
             lastItemWidth = lastItemWidth + frame.size.width;
             obj.frame = frame;
         }];
@@ -253,8 +253,8 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
         
         CGRect frame = leftBarButton.frame;
         frame.origin.x = 0.f;
-        frame.size.height = frame.size.height > contentViewHeight ? contentViewHeight : frame.size.height;
-        frame.origin.y = (contentViewHeight - frame.size.height) / 2;
+        frame.size.height = frame.size.height > CGRectGetHeight(self.frame) ? CGRectGetHeight(self.frame) : frame.size.height;
+        frame.origin.y = (CGRectGetHeight(self.frame) - frame.size.height) / 2;
         _leftBarButton.frame = frame;
         
         [self addSubview:_leftBarButton];
@@ -272,8 +272,8 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
         [leftBarItems enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             CGRect frame = obj.frame;
             frame.origin.x = lastItemWidth;
-            frame.size.height = frame.size.height > contentViewHeight ? contentViewHeight : frame.size.height;
-            frame.origin.y = (contentViewHeight - frame.size.height) / 2;
+            frame.size.height = frame.size.height > CGRectGetHeight(self.frame) ? CGRectGetHeight(self.frame) : frame.size.height;
+            frame.origin.y = (CGRectGetHeight(self.frame) - frame.size.height) / 2;
             lastItemWidth += frame.size.width;
             obj.frame = frame;
             [self addSubview:obj];
@@ -296,8 +296,8 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
         
         CGRect frame = rightBarButton.frame;
         frame.origin.x = CGRectGetWidth(self.bounds) - frame.size.width;
-        frame.size.height = frame.size.height > contentViewHeight ? contentViewHeight : frame.size.height;
-        frame.origin.y = (contentViewHeight - frame.size.height) / 2;
+        frame.size.height = frame.size.height > CGRectGetHeight(self.frame) ? CGRectGetHeight(self.frame) : frame.size.height;
+        frame.origin.y = (CGRectGetHeight(self.frame) - frame.size.height) / 2;
         _rightBarButton.frame = frame;
         [self addSubview:_rightBarButton];
     }
@@ -314,8 +314,8 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
         [rightBarItems enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             CGRect frame = obj.frame;
             frame.origin.x = CGRectGetWidth(self.frame) - frame.size.width - lastItemWidth;
-            frame.size.height = frame.size.height > contentViewHeight ? contentViewHeight : frame.size.height;
-            frame.origin.y = (contentViewHeight - frame.size.height) / 2;
+            frame.size.height = frame.size.height > CGRectGetHeight(self.frame) ? CGRectGetHeight(self.frame) : frame.size.height;
+            frame.origin.y = (CGRectGetHeight(self.frame) - frame.size.height) / 2;
             lastItemWidth += frame.size.width;
             obj.frame = frame;
             [self addSubview:obj];
@@ -374,7 +374,7 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
 
 - (instancetype)initWithIdentifier:(NSString *)identifier
 {
-    self = [super initWithFrame:kAYNavigationBarFrame];
+    self = [super initWithFrame:kAYNavigationBarDefaultFrame];
     if (self) {
 
         _identifier = identifier;
@@ -488,10 +488,11 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
     if (_prefersLargeTitles && !isLandscape) {
         largeTitleViewHeight = [self ay_largeTitleViewHeight];
     }
-    contentViewHeight = isLandscape ? AYNavigationBarLandscapeHeight : AYNavigationBarPortraitHeight;
-    CGRect barFrame = kAYNavigationBarFrame;
     CGFloat statusBarHeight = isLandscape ? 0.f : (kAYNavigationBarIsIPhoneX ? 44.f : 20.f);
+    CGRect barFrame = kAYNavigationBarDefaultFrame;
     barFrame.origin.y = statusBarHeight + self.verticalOffset;
+    barFrame.size.height = isLandscape ? AYNavigationBarLandscapeHeight : AYNavigationBarPortraitHeight;
+    barFrame.size.height += self.contentOffset;
     barFrame.size.height += largeTitleViewHeight;
     if (self.willHidden) barFrame.origin.y = -barFrame.size.height;
     self.frame = barFrame;
@@ -503,7 +504,7 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
     
     _navigationItem.frame = [self barContentFrame];
     
-    _largeTitleView.frame = CGRectMake(0, contentViewHeight, CGRectGetWidth(self.frame), largeTitleViewHeight);
+    _largeTitleView.frame = CGRectMake(0, CGRectGetMaxY(_navigationItem.frame), CGRectGetWidth(self.frame), largeTitleViewHeight);
     [self ay_showLargeTitle:(!isLandscape && _prefersLargeTitles)];
 }
 
@@ -519,7 +520,8 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
 
 - (CGRect)barContentFrame
 {
-    CGRect frame = kAYBarContentViewFrame;
+    CGRect frame = kAYBarContentViewDefaultFrame;
+    frame.size.height += self.contentOffset;
     if ([self ay_needsFixedSpace]) {
         frame.origin.x = AYNavigationBarIPhoneXFixedSpaceWidth;
         frame.size.width = kAYNavigationBarScreenWidth - AYNavigationBarIPhoneXFixedSpaceWidth * 2;
@@ -671,9 +673,16 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
     }
 }
 
+- (void)setContentOffset:(CGFloat)contentOffset
+{
+    _contentOffset = contentOffset > -14.f ? contentOffset : -14.f;
+    
+    [self ay_layoutIfNeeded];
+}
+
 - (void)setVerticalOffset:(CGFloat)verticalOffset
 {
-    _verticalOffset = verticalOffset;
+    _verticalOffset = verticalOffset < 0 ? verticalOffset : 0;
     
     [self ay_layoutIfNeeded];
 }

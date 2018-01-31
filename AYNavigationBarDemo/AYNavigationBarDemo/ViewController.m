@@ -82,6 +82,9 @@
     
     // 设置导航栏垂直位移
     // self.ay_navigationBar.verticalOffset = -44.f;
+    
+    // 设置导航栏内容高度偏移量
+    // self.ay_navigationBar.contentOffset = -14.f;
 }
 
 - (void)didReceiveMemoryWarning {

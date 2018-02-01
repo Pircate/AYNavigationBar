@@ -133,15 +133,10 @@
             [self.ay_navigationBar setHidden:!self.ay_navigationBar.hidden animated:YES];
             break;
         case 2:
-        {
             self.ay_navigationBar.prefersLargeTitles = !self.ay_navigationBar.prefersLargeTitles;
-        }
             break;
         case 3:
             self.ay_navigationBar.contentOffset = self.ay_navigationBar.contentOffset == -14.f ? 0 : -14.f;
-            break;
-        case 4:
-            return;
             break;
             
         default:

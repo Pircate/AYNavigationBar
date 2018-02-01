@@ -579,8 +579,8 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
 
 - (BOOL)ay_isLandscape
 {
-    UIDeviceOrientation currentOrientation = [[UIDevice currentDevice] orientation];
-    return UIDeviceOrientationIsLandscape(currentOrientation);
+    UIInterfaceOrientation orientation = UIApplication.sharedApplication.statusBarOrientation;
+    return UIInterfaceOrientationIsLandscape(orientation);
 }
 
 - (BOOL)ay_needsFixedSpace
@@ -680,7 +680,7 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
 
 - (void)setVerticalOffset:(CGFloat)verticalOffset
 {
-    _verticalOffset = verticalOffset < 0 ? verticalOffset : 0;
+    _verticalOffset = verticalOffset < 0.f ? verticalOffset : 0.f;
     
     [self ay_layoutIfNeeded];
 }

@@ -12,7 +12,7 @@
 
 #import "AYNavigationBar.h"
 
-@interface ViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface ViewController () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -138,26 +138,35 @@
         }
             break;
         case 3:
-        {
-            [UIView animateWithDuration:0.25 animations:^{
-                self.ay_navigationBar.verticalOffset = self.ay_navigationBar.verticalOffset == -44.f ? 0 : -44.f;
-                self.ay_navigationItem.alpha = self.ay_navigationBar.verticalOffset == -44.f ? 0 : 1;
-            }];
-        }
+            self.ay_navigationBar.contentOffset = self.ay_navigationBar.contentOffset == -14.f ? 0 : -14.f;
             break;
         case 4:
-            self.ay_navigationBar.contentOffset = self.ay_navigationBar.contentOffset == -14.f ? 0 : -14.f;
+            return;
             break;
             
         default:
             break;
     }
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:0.25 animations:^{
-            self.tableView.contentInset = UIEdgeInsetsMake(CGRectGetMaxY(self.ay_navigationBar.frame), 0, 0, 0);
-        }];
-    });
+}
+
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGFloat offsetY = scrollView.contentOffset.y + UIApplication.sharedApplication.statusBarFrame.size.height + CGRectGetHeight(self.ay_navigationItem.frame);
+    if (offsetY > 0) {
+        if (offsetY < 44.f) {
+            self.ay_navigationBar.verticalOffset = -offsetY;
+            self.ay_navigationItem.alpha = 1;
+        }
+        else {
+            self.ay_navigationBar.verticalOffset = -44.f;
+            self.ay_navigationItem.alpha = 0;
+        }
+    }
+    else {
+        self.ay_navigationBar.verticalOffset = 0;
+        self.ay_navigationItem.alpha = 1;
+    }
 }
 
 #pragma mark - getter
@@ -167,7 +176,8 @@
         _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
-        _tableView.contentInset = UIEdgeInsetsMake(CGRectGetMaxY(self.ay_navigationBar.frame), 0, 0, 0);
+        _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 29)];
+        _tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cellID"];
     }
     return _tableView;
@@ -176,7 +186,7 @@
 - (NSArray *)dataSource
 {
     if (!_dataSource) {
-        _dataSource = @[@"隐藏或显示导航栏无动画", @"隐藏或显示导航栏有动画", @"设置导航栏大标题", @"设置导航栏垂直位置偏移量", @"设置导航栏内容高度偏移量"];
+        _dataSource = @[@"隐藏或显示导航栏无动画", @"隐藏或显示导航栏有动画", @"设置导航栏大标题", @"设置导航栏内容高度偏移量", @"设置导航栏垂直位移(上滑可查看)"];
     }
     return _dataSource;
 }

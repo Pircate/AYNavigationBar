@@ -22,334 +22,77 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
 #define kAYNavigationBarScreenWidth [UIScreen mainScreen].bounds.size.width
 
 #define kAYNavigationBarDefaultFrame CGRectMake(0, kAYNavigationBarStatusBarHeight, kAYNavigationBarScreenWidth, AYNavigationBarDefaultHeight)
-#define kAYBarContentViewDefaultFrame CGRectMake(0, 0, kAYNavigationBarScreenWidth, AYNavigationBarDefaultHeight)
 
 #pragma mark - AYNavigationItem
 @interface AYNavigationItem ()
 
-@property (nonatomic, strong) UILabel *titleLabel;
-
-@property (nonatomic, assign) CGRect titleViewFrame;
-@property (nonatomic, assign) CGFloat leftOffset;
-@property (nonatomic, assign) CGFloat rightOffset;
+@property (nonatomic, strong) AYNavigationBarContentView *contentView;
 
 @end
 
 @implementation AYNavigationItem
 
-- (instancetype)init
-{
-    self = [super initWithFrame:kAYBarContentViewDefaultFrame];
-    if (self) {
-        
-        _titleViewStyle = AYNavigationBarTitleViewStyleDefault;
-        
-        [self ay_addSubviews];
-    }
-    return self;
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    
-    [self updateLeftBarButtonFrame];
-    [self updateLeftBarItemsFrame];
-    [self updateRightBarButtonFrame];
-    [self updateRightBarItemsFrame];
-    [self updateTitleFrame];
-}
-
-#pragma mark - private
-- (void)ay_addSubviews
-{
-    [self ay_addTitleLabel];
-}
-
-- (void)ay_addTitleLabel
-{
-    if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc] init];
-        _titleLabel.hidden = YES;
-        _titleLabel.font = [UIFont boldSystemFontOfSize:17];
-        _titleLabel.textColor = [UIColor darkTextColor];
-        _titleLabel.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:_titleLabel];
-    }
-}
-
-- (void)updateTitleLabelFrame
-{
-    CGFloat offset = MAX(self.leftOffset, self.rightOffset) * 2;
-    _titleLabel.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame) - offset, CGRectGetHeight(self.frame));
-    _titleLabel.center = CGPointMake(CGRectGetWidth(self.frame) / 2, CGRectGetHeight(self.frame) / 2);
-}
-
-- (void)updateTitleViewFrame
-{
-    if (self.titleViewStyle == AYNavigationBarTitleViewStyleAutomatic) {
-        CGFloat titleViewMaxWidth = CGRectGetWidth(self.frame) - self.leftOffset - self.rightOffset;
-        CGRect frame = self.titleViewFrame;
-        frame.size.height = frame.size.height <= CGRectGetHeight(self.frame) ? frame.size.height : CGRectGetHeight(self.frame);
-        frame.size.width = frame.size.width <= titleViewMaxWidth ? frame.size.width : titleViewMaxWidth;
-        frame.origin.x = self.leftOffset;
-        frame.origin.y = (CGRectGetHeight(self.frame) - frame.size.height) / 2;
-        _titleView.frame = frame;
-    }
-    else {
-        CGFloat offset = MAX(self.leftOffset, self.rightOffset) * 2;
-        CGFloat titleViewMaxWidth = CGRectGetWidth(self.frame) - offset;
-        CGRect frame = self.titleViewFrame;
-        frame.size.height = frame.size.height <= CGRectGetHeight(self.frame) ? frame.size.height : CGRectGetHeight(self.frame);
-        frame.size.width = frame.size.width <= titleViewMaxWidth ? frame.size.width : titleViewMaxWidth;
-        _titleView.frame = frame;
-        _titleView.center = CGPointMake(self.center.x, CGRectGetHeight(self.frame) / 2);
-    }
-}
-
-- (void)updateTitleFrame
-{
-    if (_titleView) {
-        [self updateTitleViewFrame];
-    }
-    else {
-        [self updateTitleLabelFrame];
-    }
-}
-
-- (void)removeAllLeftBarItems
-{
-    if ([self.subviews containsObject:_leftBarButton]) {
-        [_leftBarButton removeFromSuperview];
-    }
-    if (_leftBarButton) {
-        _leftBarButton = nil;
-    }
-    [_leftBarItems enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj removeFromSuperview];
-    }];
-}
-
-- (void)removeAllRightBarItems
-{
-    if ([self.subviews containsObject:_rightBarButton]) {
-        [_rightBarButton removeFromSuperview];
-    }
-    if (_rightBarButton) {
-        _rightBarButton = nil;
-    }
-    [_rightBarItems enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj removeFromSuperview];
-    }];
-}
-
-- (void)updateLeftBarButtonFrame
-{
-    CGRect frame = _leftBarButton.frame;
-    frame.origin.x = 0.f;
-    frame.size.height = frame.size.height > CGRectGetHeight(self.frame) ? CGRectGetHeight(self.frame) : frame.size.height;
-    frame.origin.y = (CGRectGetHeight(self.frame) - frame.size.height) / 2;
-    _leftBarButton.frame = frame;
-}
-
-- (void)updateLeftBarItemsFrame
-{
-    if (_leftBarItems.count > 0) {
-        __block CGFloat lastItemWidth = 0.f;
-        [_leftBarItems enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            CGRect frame = obj.frame;
-            frame.origin.x = lastItemWidth;
-            frame.size.height = frame.size.height > CGRectGetHeight(self.frame) ? CGRectGetHeight(self.frame) : frame.size.height;
-            frame.origin.y = (CGRectGetHeight(self.frame) - frame.size.height) / 2;
-            lastItemWidth += frame.size.width;
-            obj.frame = frame;
-        }];
-    }
-}
-
-- (void)updateRightBarButtonFrame
-{
-    CGRect frame = _rightBarButton.frame;
-    frame.origin.x = CGRectGetWidth(self.bounds) - frame.size.width;
-    frame.size.height = frame.size.height > CGRectGetHeight(self.frame) ? CGRectGetHeight(self.frame) : frame.size.height;
-    frame.origin.y = (CGRectGetHeight(self.frame) - frame.size.height) / 2;
-    _rightBarButton.frame = frame;
-}
-
-- (void)updateRightBarItemsFrame
-{
-    if (_rightBarItems.count > 0) {
-        __block CGFloat lastItemWidth = 0.f;
-        [_rightBarItems enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            CGRect frame = obj.frame;
-            frame.origin.x = CGRectGetWidth(self.frame) - frame.size.width - lastItemWidth;
-            frame.size.height = frame.size.height > CGRectGetHeight(self.frame) ? CGRectGetHeight(self.frame) : frame.size.height;
-            frame.origin.y = (CGRectGetHeight(self.frame) - frame.size.height) / 2;
-            lastItemWidth = lastItemWidth + frame.size.width;
-            obj.frame = frame;
-        }];
-    }
-}
-
 #pragma mark - getter & setter
+- (AYNavigationBarContentView *)contentView
+{
+    if (!_contentView) {
+        _contentView = [[AYNavigationBarContentView alloc] init];
+    }
+    return _contentView;
+}
+
 - (void)setTitleViewStyle:(AYNavigationBarTitleViewStyle)titleViewStyle
 {
     _titleViewStyle = titleViewStyle;
-    
-    [self updateTitleViewFrame];
+    self.contentView.titleViewStyle = titleViewStyle;
 }
 
 - (void)setTitle:(NSString *)title
 {
     _title = [title copy];
-    _titleLabel.hidden = NO;
-    _titleLabel.attributedText = [[NSAttributedString alloc] initWithString:title ?: @"" attributes:self.titleTextAttributes];
-    
-    if (title) {
-        if ([self.subviews containsObject:_titleView]) {
-            [_titleView removeFromSuperview];
-        }
-        if (_titleView) {
-            _titleView = nil;
-        }
-        [self updateTitleLabelFrame];
-    }
+    self.contentView.title = title;
 }
 
 - (void)setTitleView:(UIView *)titleView
 {
-    [_titleView removeFromSuperview];
-    self.titleViewFrame = titleView.frame;
     _titleView = titleView;
-    
-    if (titleView) {
-        _titleLabel.hidden = YES;
-        
-        [self updateTitleViewFrame];
-        [self addSubview:_titleView];
-    }
+    self.contentView.titleView = titleView;
 }
 
 - (void)setTitleTextAttributes:(NSDictionary<NSAttributedStringKey,id> *)titleTextAttributes
 {
     _titleTextAttributes = [titleTextAttributes copy];
-    
-    if (self.title) {
-        _titleLabel.attributedText = [[NSAttributedString alloc] initWithString:self.title attributes:titleTextAttributes];
-    }
+    self.contentView.titleTextAttributes = titleTextAttributes;
 }
 
 - (void)setLeftBarButton:(UIButton *)leftBarButton
 {
-    [_leftBarButton removeFromSuperview];
     _leftBarButton = leftBarButton;
-    
-    if (leftBarButton) {
-        
-        [_leftBarItems enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [obj removeFromSuperview];
-        }];
-        _leftBarItems = @[];
-        
-        CGRect frame = leftBarButton.frame;
-        frame.origin.x = 0.f;
-        frame.size.height = frame.size.height > CGRectGetHeight(self.frame) ? CGRectGetHeight(self.frame) : frame.size.height;
-        frame.origin.y = (CGRectGetHeight(self.frame) - frame.size.height) / 2;
-        _leftBarButton.frame = frame;
-        
-        [self addSubview:_leftBarButton];
-    }
-    [self updateTitleFrame];
+    self.contentView.leftBarButton = leftBarButton;
 }
 
 - (void)setLeftBarItems:(NSArray<UIView *> *)leftBarItems
 {
-    [self removeAllLeftBarItems];
     _leftBarItems = [leftBarItems copy];
-    
-    if (leftBarItems.count > 0) {
-        __block CGFloat lastItemWidth = 0.f;
-        [leftBarItems enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            CGRect frame = obj.frame;
-            frame.origin.x = lastItemWidth;
-            frame.size.height = frame.size.height > CGRectGetHeight(self.frame) ? CGRectGetHeight(self.frame) : frame.size.height;
-            frame.origin.y = (CGRectGetHeight(self.frame) - frame.size.height) / 2;
-            lastItemWidth += frame.size.width;
-            obj.frame = frame;
-            [self addSubview:obj];
-        }];
-    }
-    [self updateTitleFrame];
+    self.contentView.leftBarItems = leftBarItems;
 }
 
 - (void)setRightBarButton:(UIButton *)rightBarButton
 {
-    [_rightBarButton removeFromSuperview];
     _rightBarButton = rightBarButton;
-    
-    if (rightBarButton) {
-        
-        [_rightBarItems enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [obj removeFromSuperview];
-        }];
-        _rightBarItems = @[];
-        
-        CGRect frame = rightBarButton.frame;
-        frame.origin.x = CGRectGetWidth(self.bounds) - frame.size.width;
-        frame.size.height = frame.size.height > CGRectGetHeight(self.frame) ? CGRectGetHeight(self.frame) : frame.size.height;
-        frame.origin.y = (CGRectGetHeight(self.frame) - frame.size.height) / 2;
-        _rightBarButton.frame = frame;
-        [self addSubview:_rightBarButton];
-    }
-    [self updateTitleFrame];
+    self.contentView.rightBarButton = rightBarButton;
 }
 
 - (void)setRightBarItems:(NSArray<UIView *> *)rightBarItems
 {
-    [self removeAllRightBarItems];
     _rightBarItems = [rightBarItems copy];
-    
-    if (rightBarItems.count > 0) {
-        __block CGFloat lastItemWidth = 0.f;
-        [rightBarItems enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            CGRect frame = obj.frame;
-            frame.origin.x = CGRectGetWidth(self.frame) - frame.size.width - lastItemWidth;
-            frame.size.height = frame.size.height > CGRectGetHeight(self.frame) ? CGRectGetHeight(self.frame) : frame.size.height;
-            frame.origin.y = (CGRectGetHeight(self.frame) - frame.size.height) / 2;
-            lastItemWidth += frame.size.width;
-            obj.frame = frame;
-            [self addSubview:obj];
-        }];
-    }
-    [self updateTitleFrame];
+    self.contentView.rightBarItems = rightBarItems;
 }
 
-- (CGFloat)leftOffset
+- (void)setAlpha:(CGFloat)alpha
 {
-    _leftOffset = 0.f;
-    if (_leftBarButton) {
-        _leftOffset = CGRectGetWidth(_leftBarButton.frame);
-    }
-    if (_leftBarItems.count > 0) {
-        [_leftBarItems enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            _leftOffset += CGRectGetWidth(obj.frame);
-        }];
-    }
-    return _leftOffset;
-}
-
-- (CGFloat)rightOffset
-{
-    _rightOffset = 0.f;
-    if (_rightBarButton) {
-        _rightOffset = CGRectGetWidth(_rightBarButton.frame);
-    }
-    if (_rightBarItems.count > 0) {
-        [_rightBarItems enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            _rightOffset += CGRectGetWidth(obj.frame);
-        }];
-    }
-    return _rightOffset;
+    _alpha = alpha;
+    self.contentView.alpha = alpha;
 }
 
 @end
@@ -495,9 +238,9 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
         contentFrame.origin.x = AYNavigationBarIPhoneXFixedSpaceWidth;
         contentFrame.size.width = kAYNavigationBarScreenWidth - AYNavigationBarIPhoneXFixedSpaceWidth * 2;
     }
-    self.navigationItem.frame = contentFrame;
+    self.navigationItem.contentView.frame = contentFrame;
     
-    self.largeTitleView.frame = CGRectMake(0, CGRectGetMaxY(self.navigationItem.frame), CGRectGetWidth(self.frame), largeTitleViewHeight);
+    self.largeTitleView.frame = CGRectMake(0, CGRectGetMaxY(contentFrame), CGRectGetWidth(self.frame), largeTitleViewHeight);
     [self ay_showLargeTitle:(!isLandscape && self.prefersLargeTitles)];
 }
 
@@ -592,12 +335,12 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
         _largeTitleLabel.attributedText = [[NSAttributedString alloc] initWithString:self.navigationItem.title ?: @"" attributes:self.largeTitleTextAttributes];
         
         _largeTitleLabel.frame = CGRectMake(16.f, 0.f, kAYNavigationBarScreenWidth - 32.f, CGRectGetHeight(_largeTitleView.frame));
-        _navigationItem.titleLabel.alpha = 0.f;
+        _navigationItem.contentView.titleLabel.alpha = 0.f;
         _largeTitleLabel.alpha = 1.f;
     }
     else {
         _largeTitleView.hidden = YES;
-        _navigationItem.titleLabel.alpha = 1.f;
+        _navigationItem.contentView.titleLabel.alpha = 1.f;
         _largeTitleLabel.alpha = 0.f;
     }
 }
@@ -620,8 +363,8 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
 {
     _navigationItem = navigationItem;
     
-    [_navigationItem removeFromSuperview];
-    [self addSubview:_navigationItem];
+    [_navigationItem.contentView removeFromSuperview];
+    [self addSubview:_navigationItem.contentView];
 }
 
 - (void)setBackgroundImage:(UIImage *)backgroundImage
@@ -769,17 +512,6 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
 }
 
 #pragma mark - getter & setter
-- (BOOL)ay_navigationBarDisabled
-{
-    return [objc_getAssociatedObject(self, _cmd) boolValue];
-}
-
-- (void)setAy_navigationBarDisabled:(BOOL)ay_navigationBarDisabled
-{
-    objc_setAssociatedObject(self, @selector(ay_navigationBarDisabled), @(ay_navigationBarDisabled), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    self.fd_prefersNavigationBarHidden = !ay_navigationBarDisabled;
-}
-
 - (AYNavigationBar *)ay_navigationBar
 {
     AYNavigationBar *navigationBar = objc_getAssociatedObject(self, _cmd);
@@ -809,6 +541,17 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
 - (void)setAy_navigationItem:(AYNavigationItem *)ay_navigationItem
 {
     objc_setAssociatedObject(self, @selector(ay_navigationItem), ay_navigationItem, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)ay_navigationBarDisabled
+{
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
+}
+
+- (void)setAy_navigationBarDisabled:(BOOL)ay_navigationBarDisabled
+{
+    objc_setAssociatedObject(self, @selector(ay_navigationBarDisabled), @(ay_navigationBarDisabled), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    self.fd_prefersNavigationBarHidden = !ay_navigationBarDisabled;
 }
 
 @end

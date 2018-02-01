@@ -147,7 +147,7 @@
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    CGFloat offsetY = scrollView.contentOffset.y + UIApplication.sharedApplication.statusBarFrame.size.height + CGRectGetHeight(self.ay_navigationItem.frame);
+    CGFloat offsetY = scrollView.contentOffset.y + UIApplication.sharedApplication.statusBarFrame.size.height + 44;
     if (offsetY > 0) {
         if (offsetY < 44.f) {
             self.ay_navigationBar.verticalOffset = -offsetY;

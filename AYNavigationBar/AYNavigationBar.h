@@ -6,13 +6,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AYNavigationBarContentView.h"
 
-typedef NS_ENUM(NSInteger, AYNavigationBarTitleViewStyle) {
-    AYNavigationBarTitleViewStyleDefault,  // 水平居中
-    AYNavigationBarTitleViewStyleAutomatic // 自动适应
-};
-
-@interface AYNavigationItem : UIView
+@interface AYNavigationItem : NSObject
 
 @property (nonatomic, assign) AYNavigationBarTitleViewStyle titleViewStyle; // 标题视图风格
 
@@ -29,6 +25,8 @@ typedef NS_ENUM(NSInteger, AYNavigationBarTitleViewStyle) {
 @property (nonatomic, strong) UIButton *rightBarButton; // 导航栏右边按钮
 
 @property (nonatomic, copy) NSArray<UIView *> *rightBarItems; // 导航栏右边视图数组
+
+@property (nonatomic, assign) CGFloat alpha; // 内容视图透明度
 
 @end
 
@@ -52,11 +50,11 @@ typedef NS_ENUM(NSInteger, AYNavigationBarTitleViewStyle) {
 
 @interface UIViewController (AYNavigationBar)
 
-@property (nonatomic, assign) BOOL ay_navigationBarDisabled; // 是否禁用AYNavigationBar，使用系统导航栏
-
 @property (nonatomic, strong, readonly) AYNavigationBar *ay_navigationBar;
 
 @property (nonatomic, strong, readonly) AYNavigationItem *ay_navigationItem;
+
+@property (nonatomic, assign) BOOL ay_navigationBarDisabled; // 是否禁用AYNavigationBar，使用系统导航栏
 
 - (void)registerNavigationBar; // 注册AYNavigationBar
 

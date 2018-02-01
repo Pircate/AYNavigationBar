@@ -17,6 +17,7 @@
 		465DA7621FD1046E00BAC8D1 /* NextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DA7611FD1046E00BAC8D1 /* NextViewController.m */; };
 		465DA7691FD1084E00BAC8D1 /* AYNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DA7651FD1084E00BAC8D1 /* AYNavigationBar.m */; };
 		92C41E307C114CD4C70BF7E6 /* libPods-AYNavigationBarDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94DA90E741CFE88B7DAFB22F /* libPods-AYNavigationBarDemo.a */; };
+		B50B79C42022FFE000567507 /* AYNavigationBarContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B50B79C32022FFE000567507 /* AYNavigationBarContentView.m */; };
 		B556EA9E2021C0F000EAF2DF /* PresentedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B556EA9D2021C0F000EAF2DF /* PresentedViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,8 @@
 		465DA7651FD1084E00BAC8D1 /* AYNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYNavigationBar.m; sourceTree = "<group>"; };
 		85A1CF4DB95A03CCAD2AEB6D /* Pods-AYNavigationBarDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AYNavigationBarDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-AYNavigationBarDemo/Pods-AYNavigationBarDemo.release.xcconfig"; sourceTree = "<group>"; };
 		94DA90E741CFE88B7DAFB22F /* libPods-AYNavigationBarDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AYNavigationBarDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B50B79C22022FFE000567507 /* AYNavigationBarContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AYNavigationBarContentView.h; sourceTree = "<group>"; };
+		B50B79C32022FFE000567507 /* AYNavigationBarContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AYNavigationBarContentView.m; sourceTree = "<group>"; };
 		B556EA9C2021C0F000EAF2DF /* PresentedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresentedViewController.h; sourceTree = "<group>"; };
 		B556EA9D2021C0F000EAF2DF /* PresentedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresentedViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,6 +166,8 @@
 			children = (
 				465DA7641FD1084E00BAC8D1 /* AYNavigationBar.h */,
 				465DA7651FD1084E00BAC8D1 /* AYNavigationBar.m */,
+				B50B79C22022FFE000567507 /* AYNavigationBarContentView.h */,
+				B50B79C32022FFE000567507 /* AYNavigationBarContentView.m */,
 			);
 			name = AYNavigationBar;
 			path = ../../AYNavigationBar;
@@ -366,6 +371,7 @@
 				465DA7621FD1046E00BAC8D1 /* NextViewController.m in Sources */,
 				465DA72B1FD1020B00BAC8D1 /* ViewController.m in Sources */,
 				465DA7691FD1084E00BAC8D1 /* AYNavigationBar.m in Sources */,
+				B50B79C42022FFE000567507 /* AYNavigationBarContentView.m in Sources */,
 				B556EA9E2021C0F000EAF2DF /* PresentedViewController.m in Sources */,
 				465DA7361FD1020B00BAC8D1 /* main.m in Sources */,
 				465DA7281FD1020B00BAC8D1 /* AppDelegate.m in Sources */,

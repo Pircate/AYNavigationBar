@@ -12,7 +12,6 @@
 
 @interface AYNavigationBarContentView()
 
-@property (nonatomic, assign) CGRect titleViewFrame;
 @property (nonatomic, assign) CGFloat leftOffset;
 @property (nonatomic, assign) CGFloat rightOffset;
 
@@ -43,6 +42,30 @@
     [self updateTitleFrame];
 }
 
+- (void)updateConstraints
+{
+    [super updateConstraints];
+    
+    if (![self.subviews containsObject:self.titleView]) {
+        return;
+    }
+    
+    CGRect frame = self.titleView.frame;
+    CGFloat height = frame.size.height <= CGRectGetHeight(self.frame) ? frame.size.height : CGRectGetHeight(self.frame);
+    CGFloat left = self.leftOffset;
+    CGFloat right = self.rightOffset;
+    if (self.titleViewStyle == AYNavigationBarTitleViewStyleDefault) {
+        CGFloat offset = MAX(self.leftOffset, self.rightOffset);
+        left = right = offset;
+    }
+    [self removeConstraints:self.constraints];
+    self.titleView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:left]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:-right]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:height]];
+}
+
 #pragma mark - private
 - (void)ay_addSubviews
 {
@@ -68,32 +91,10 @@
     _titleLabel.center = CGPointMake(CGRectGetWidth(self.frame) / 2, CGRectGetHeight(self.frame) / 2);
 }
 
-- (void)updateTitleViewFrame
-{
-    if (self.titleViewStyle == AYNavigationBarTitleViewStyleAutomatic) {
-        CGFloat titleViewMaxWidth = CGRectGetWidth(self.frame) - self.leftOffset - self.rightOffset;
-        CGRect frame = self.titleViewFrame;
-        frame.size.height = frame.size.height <= CGRectGetHeight(self.frame) ? frame.size.height : CGRectGetHeight(self.frame);
-        frame.size.width = frame.size.width <= titleViewMaxWidth ? frame.size.width : titleViewMaxWidth;
-        frame.origin.x = self.leftOffset;
-        frame.origin.y = (CGRectGetHeight(self.frame) - frame.size.height) / 2;
-        _titleView.frame = frame;
-    }
-    else {
-        CGFloat offset = MAX(self.leftOffset, self.rightOffset) * 2;
-        CGFloat titleViewMaxWidth = CGRectGetWidth(self.frame) - offset;
-        CGRect frame = self.titleViewFrame;
-        frame.size.height = frame.size.height <= CGRectGetHeight(self.frame) ? frame.size.height : CGRectGetHeight(self.frame);
-        frame.size.width = frame.size.width <= titleViewMaxWidth ? frame.size.width : titleViewMaxWidth;
-        _titleView.frame = frame;
-        _titleView.center = CGPointMake(self.center.x, CGRectGetHeight(self.frame) / 2);
-    }
-}
-
 - (void)updateTitleFrame
 {
     if (_titleView) {
-        [self updateTitleViewFrame];
+        [self updateConstraintsIfNeeded];
     }
     else {
         [self updateTitleLabelFrame];
@@ -179,7 +180,7 @@
 {
     _titleViewStyle = titleViewStyle;
     
-    [self updateTitleViewFrame];
+    [self updateConstraintsIfNeeded];
 }
 
 - (void)setTitle:(NSString *)title
@@ -202,14 +203,13 @@
 - (void)setTitleView:(UIView *)titleView
 {
     [_titleView removeFromSuperview];
-    self.titleViewFrame = titleView.frame;
     _titleView = titleView;
     
     if (titleView) {
         _titleLabel.hidden = YES;
         
-        [self updateTitleViewFrame];
         [self addSubview:_titleView];
+        [self updateConstraintsIfNeeded];
     }
 }
 

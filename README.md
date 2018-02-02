@@ -55,7 +55,7 @@ UIImage *image = [[UIImage imageNamed:@"shadow"] imageWithRenderingMode:UIImageR
 self.ay_navigationBar.shadowImage = image;
 
 // 设置导航栏背景图片
-// self.ay_navigationBar.backgroundImage = [UIImage imageNamed:@"nav"];
+self.ay_navigationBar.backgroundImage = [UIImage imageNamed:@"nav"];
 
 UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeSystem];
 rightBtn.frame = CGRectMake(0, 0, 44, 44);
@@ -83,8 +83,8 @@ self.ay_navigationBar.largeTitleTextAttributes = @{NSFontAttributeName: [UIFont 
 self.ay_navigationBarDisabled = YES;
 
 // 设置导航栏垂直位置偏移量
-// self.ay_navigationBar.verticalOffset = -44.f;
+self.ay_navigationBar.verticalOffset = -44.f;
     
 // 设置导航栏内容高度偏移量
-// self.ay_navigationBar.contentOffset = -14.f;
+self.ay_navigationBar.contentOffset = -14.f;
 ```

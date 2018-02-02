@@ -12,8 +12,9 @@
 
 @interface AYNavigationBarContentView()
 
-@property (nonatomic, assign) CGFloat leftOffset;
-@property (nonatomic, assign) CGFloat rightOffset;
+@property (nonatomic, assign) CGFloat titleViewHeight;
+@property (nonatomic, assign) CGFloat leftMargin;
+@property (nonatomic, assign) CGFloat rightMargin;
 
 @end
 
@@ -50,13 +51,12 @@
         return;
     }
     
-    CGRect frame = self.titleView.frame;
-    CGFloat height = frame.size.height <= CGRectGetHeight(self.frame) ? frame.size.height : CGRectGetHeight(self.frame);
-    CGFloat left = self.leftOffset;
-    CGFloat right = self.rightOffset;
+    CGFloat height = self.titleViewHeight > CGRectGetHeight(self.frame) ? CGRectGetHeight(self.frame) : self.titleViewHeight;
+    CGFloat left = self.leftMargin;
+    CGFloat right = self.rightMargin;
     if (self.titleViewStyle == AYNavigationBarTitleViewStyleDefault) {
-        CGFloat offset = MAX(self.leftOffset, self.rightOffset);
-        left = right = offset;
+        CGFloat margin = MAX(self.leftMargin, self.rightMargin);
+        left = right = margin;
     }
     [self removeConstraints:self.constraints];
     self.titleView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -86,8 +86,8 @@
 
 - (void)updateTitleLabelFrame
 {
-    CGFloat offset = MAX(self.leftOffset, self.rightOffset) * 2;
-    _titleLabel.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame) - offset, CGRectGetHeight(self.frame));
+    CGFloat margin = MAX(self.leftMargin, self.rightMargin) * 2;
+    _titleLabel.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame) - margin, CGRectGetHeight(self.frame));
     _titleLabel.center = CGPointMake(CGRectGetWidth(self.frame) / 2, CGRectGetHeight(self.frame) / 2);
 }
 
@@ -207,7 +207,7 @@
     
     if (titleView) {
         _titleLabel.hidden = YES;
-        
+        self.titleViewHeight = titleView.frame.size.height;
         [self addSubview:_titleView];
         [self updateConstraintsIfNeeded];
     }
@@ -307,32 +307,32 @@
     [self updateTitleFrame];
 }
 
-- (CGFloat)leftOffset
+- (CGFloat)leftMargin
 {
-    _leftOffset = 0.f;
+    _leftMargin = 0.f;
     if (_leftBarButton) {
-        _leftOffset = CGRectGetWidth(_leftBarButton.frame);
+        _leftMargin = CGRectGetWidth(_leftBarButton.frame);
     }
     if (_leftBarItems.count > 0) {
         [_leftBarItems enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            _leftOffset += CGRectGetWidth(obj.frame);
+            _leftMargin += CGRectGetWidth(obj.frame);
         }];
     }
-    return _leftOffset;
+    return _leftMargin;
 }
 
-- (CGFloat)rightOffset
+- (CGFloat)rightMargin
 {
-    _rightOffset = 0.f;
+    _rightMargin = 0.f;
     if (_rightBarButton) {
-        _rightOffset = CGRectGetWidth(_rightBarButton.frame);
+        _rightMargin = CGRectGetWidth(_rightBarButton.frame);
     }
     if (_rightBarItems.count > 0) {
         [_rightBarItems enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            _rightOffset += CGRectGetWidth(obj.frame);
+            _rightMargin += CGRectGetWidth(obj.frame);
         }];
     }
-    return _rightOffset;
+    return _rightMargin;
 }
 
 @end

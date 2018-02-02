@@ -14,7 +14,7 @@ const CGFloat AYNavigationBarDefaultHeight = 44.f;
 const CGFloat AYNavigationBarLargeTitleMinHeight = 49.f;
 const CGFloat AYNavigationBarPortraitHeight = 44.f;
 const CGFloat AYNavigationBarLandscapeHeight = 32.f;
-const CGFloat AYNavigationBarShadowViewHeight = 1.f / 3;
+const CGFloat AYNavigationBarShadowViewHeight = 0.5;
 const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
 
 #define kAYNavigationBarIsIPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)

@@ -476,18 +476,10 @@ const CGFloat AYNavigationBarIPhoneXFixedSpaceWidth = 56.f;
 #pragma mark - public
 - (void)registerNavigationBar
 {
-    if (self.navigationController.ay_titleTextAttributes) {
-        self.ay_navigationItem.titleTextAttributes = self.navigationController.ay_titleTextAttributes;
-    }
-    if (self.navigationController.ay_barBackgroundImage) {
-        self.ay_navigationBar.backgroundImage = self.navigationController.ay_barBackgroundImage;
-    }
-    if (self.navigationController.ay_barTintColor) {
-        self.ay_navigationBar.backgroundColor = self.navigationController.ay_barTintColor;
-    }
-    if (self.navigationController.ay_barShadowImage) {
-        self.ay_navigationBar.shadowImage = self.navigationController.ay_barShadowImage;
-    }
+    self.ay_navigationItem.titleTextAttributes = self.navigationController.ay_titleTextAttributes;
+    self.ay_navigationBar.backgroundImage = self.navigationController.ay_barBackgroundImage;
+    self.ay_navigationBar.backgroundColor = self.navigationController.ay_barTintColor;
+    self.ay_navigationBar.shadowImage = self.navigationController.ay_barShadowImage;
     self.ay_navigationBar.hidden = self.navigationController.ay_navigationBarHidden;
     self.fd_prefersNavigationBarHidden = !self.navigationController.ay_navigationBarHidden;
     [self.view addSubview:self.ay_navigationBar];

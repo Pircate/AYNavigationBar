@@ -8,7 +8,7 @@
 
 #import "NextViewController.h"
 
-#import "AYNavigationBar.h"
+#import "UIViewController+NavigationBar.h"
 
 @interface NextViewController ()
 
@@ -22,9 +22,10 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.ay_navigationBar.backgroundColor = [UIColor blueColor];
+    [self.ay_navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    self.ay_navigationBar.barTintColor = [UIColor blueColor];
     self.ay_navigationItem.title = @"下一页";
-    self.ay_navigationItem.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    self.ay_navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
 }
 

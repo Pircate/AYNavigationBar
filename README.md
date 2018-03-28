@@ -13,16 +13,23 @@ pod 'AYNavigationBar'
 
 ## Usage
 
+-### To enable AYNavigationBar of a navigation controller
+
+``` objc
+   UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+   nav.ay_navigation.configuration.enabled = YES;
+```
 ### Setting
 #### global setting
 ``` objc
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor blueColor]};
-    nav.navigationBar.barTintColor = [UIColor cyanColor];
-    [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"nav"] forBarMetrics:UIBarMetricsDefault];
-    nav.navigationBar.shadowImage = [UIImage imageNamed:@"shadow"];
+   UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+   nav.ay_navigation.configuration.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor blueColor]};
+   nav.ay_navigation.configuration.barTintColor = [UIColor cyanColor];
+   nav.ay_navigation.configuration.backgroundImage = [UIImage imageNamed:@"nav"];
+   nav.ay_navigation.configuration.shadowImage = [UIImage imageNamed:@"shadow"];
 ```
 #### view controller setting
 ``` objc
-    as UINavigationBar & UINavigationItem
+    self.ay_navigation.bar  -> UINavigationBar
+    self.ay_navigation.item -> UINavigationItem
 ```

@@ -13,7 +13,7 @@ pod 'AYNavigationBar'
 
 ## Usage
 
--### To enable AYNavigationBar of a navigation controller
+### To enable AYNavigationBar of a navigation controller
 
 ``` objc
    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];

@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author             = { "gaoX" => "gao497868860@163.com" }
   s.platform = :ios, "8.0"
-  s.source       = { :git => "https://github.com/CodeABug/AYNavigationBar.git", :tag => "1.1.6", :commit => "42ad8259553a909c29250ceef75452beb8d3bc28" }
+  s.source       = { :git => "https://github.com/CodeABug/AYNavigationBar.git", :tag => "1.1.6", :commit => "46c5b788e748810bf76ef732df301fa4543dd82b" }
   s.source_files  = "AYNavigationBar/*.{h,m}"
   s.requires_arc = true
 

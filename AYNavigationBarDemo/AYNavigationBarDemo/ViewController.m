@@ -23,7 +23,6 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.ay_navigation.item.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightBtnAction)];
-    
 }
 
 - (void)didReceiveMemoryWarning {

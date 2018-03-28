@@ -18,7 +18,10 @@
 
 - (instancetype)initWithNavigationItem:(UINavigationItem *)navigationItem
 {
-    self = [super init];
+    CGRect frame;
+    BOOL isLandscape = UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication.statusBarOrientation);
+    frame.origin.y = isLandscape ? 0 : CGRectGetMaxY(UIApplication.sharedApplication.statusBarFrame);
+    self = [super initWithFrame:frame];
     if (self) {
         _barBackgroundAlpha = 1;
         [self setItems:@[navigationItem]];

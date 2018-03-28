@@ -67,10 +67,11 @@
 
 - (void)configuraNavigationBarStyle
 {
-    self.ay_navigationBar.barTintColor = self.navigationController.ay_navigation.configuration.barTintColor;
-    self.ay_navigationBar.shadowImage = self.navigationController.ay_navigation.configuration.shadowImage;
-    self.ay_navigationBar.titleTextAttributes = self.navigationController.ay_navigation.configuration.titleTextAttributes;
-    [self.ay_navigationBar setBackgroundImage:self.navigationController.ay_navigation.configuration.backgroundImage forBarMetrics:UIBarMetricsDefault];
+    AYNavigationConfiguration *configuration = self.navigationController.ay_navigation.configuration;
+    self.ay_navigationBar.barTintColor = configuration.barTintColor;
+    self.ay_navigationBar.shadowImage = configuration.shadowImage;
+    self.ay_navigationBar.titleTextAttributes = configuration.titleTextAttributes;
+    [self.ay_navigationBar setBackgroundImage:configuration.backgroundImage forBarMetrics:UIBarMetricsDefault];
 }
 
 #pragma mark - getter & setter
@@ -129,7 +130,16 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    self.topViewController.ay_navigation.bar.frame = self.navigationBar.frame;
+    
+    AYNavigationBar *bar = self.topViewController.ay_navigation.bar;
+    CGRect frame = bar.frame;
+    if (bar.isUnrestoredWhenViewDidLayoutSubviews) {
+        frame.size = self.navigationBar.frame.size;
+    }
+    else {
+        frame = self.navigationBar.frame;
+    }
+    bar.frame = frame;
 }
 
 @end

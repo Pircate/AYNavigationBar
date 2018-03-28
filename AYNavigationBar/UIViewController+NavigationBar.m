@@ -127,9 +127,9 @@
 
 @implementation UINavigationController (NavigationBar)
 
-- (void)viewDidLayoutSubviews
+- (void)viewWillLayoutSubviews
 {
-    [super viewDidLayoutSubviews];
+    [super viewWillLayoutSubviews];
     
     AYNavigationBar *bar = self.topViewController.ay_navigation.bar;
     CGRect frame = bar.frame;

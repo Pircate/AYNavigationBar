@@ -43,7 +43,7 @@
 
 - (CGFloat)alpha
 {
-    return _barBackgroundAlpha;
+    return _barBackgroundAlpha > 0.01 ? _barBackgroundAlpha : 0.01;
 }
 
 - (void)setAlpha:(CGFloat)alpha

@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 
-#import "UIViewController+NavigationBar.h"
+#import "AYNavigation.h"
 #import "ViewController.h"
 
 @interface AppDelegate ()
@@ -23,12 +23,13 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     ViewController *vc = [[ViewController alloc] init];
-    vc.ay_navigationItem.title = @"首页";
+    vc.ay_navigation.item.title = @"首页";
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor blueColor]};
-    nav.navigationBar.barTintColor = [UIColor cyanColor];
-    [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"nav"] forBarMetrics:UIBarMetricsDefault];
-    nav.navigationBar.shadowImage = [UIImage imageNamed:@"shadow"];
+    nav.ay_navigation.configuration.enabled = YES;
+    nav.ay_navigation.configuration.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor blueColor]};
+    nav.ay_navigation.configuration.barTintColor = [UIColor cyanColor];
+    nav.ay_navigation.configuration.backgroundImage = [UIImage imageNamed:@"nav"];
+    nav.ay_navigation.configuration.shadowImage = [UIImage imageNamed:@"shadow"];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
     

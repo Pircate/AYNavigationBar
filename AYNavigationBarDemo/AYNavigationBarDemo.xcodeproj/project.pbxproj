@@ -18,6 +18,8 @@
 		465DA7691FD1084E00BAC8D1 /* AYNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DA7651FD1084E00BAC8D1 /* AYNavigationBar.m */; };
 		92C41E307C114CD4C70BF7E6 /* libPods-AYNavigationBarDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94DA90E741CFE88B7DAFB22F /* libPods-AYNavigationBarDemo.a */; };
 		B5753080206A24170076054A /* UIViewController+NavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B575307F206A24170076054A /* UIViewController+NavigationBar.m */; };
+		B5D8A2C8206B43E400623CE7 /* AYNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D8A2C5206B43E400623CE7 /* AYNavigation.m */; };
+		B5D8A2C9206B43E400623CE7 /* AYNavigationConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D8A2C7206B43E400623CE7 /* AYNavigationConfiguration.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,10 @@
 		94DA90E741CFE88B7DAFB22F /* libPods-AYNavigationBarDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AYNavigationBarDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B575307E206A24170076054A /* UIViewController+NavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NavigationBar.h"; sourceTree = "<group>"; };
 		B575307F206A24170076054A /* UIViewController+NavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NavigationBar.m"; sourceTree = "<group>"; };
+		B5D8A2C4206B43E400623CE7 /* AYNavigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYNavigation.h; sourceTree = "<group>"; };
+		B5D8A2C5206B43E400623CE7 /* AYNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYNavigation.m; sourceTree = "<group>"; };
+		B5D8A2C6206B43E400623CE7 /* AYNavigationConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYNavigationConfiguration.h; sourceTree = "<group>"; };
+		B5D8A2C7206B43E400623CE7 /* AYNavigationConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYNavigationConfiguration.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +165,10 @@
 		465DA7631FD1084E00BAC8D1 /* AYNavigationBar */ = {
 			isa = PBXGroup;
 			children = (
+				B5D8A2C4206B43E400623CE7 /* AYNavigation.h */,
+				B5D8A2C5206B43E400623CE7 /* AYNavigation.m */,
+				B5D8A2C6206B43E400623CE7 /* AYNavigationConfiguration.h */,
+				B5D8A2C7206B43E400623CE7 /* AYNavigationConfiguration.m */,
 				465DA7641FD1084E00BAC8D1 /* AYNavigationBar.h */,
 				465DA7651FD1084E00BAC8D1 /* AYNavigationBar.m */,
 				B575307E206A24170076054A /* UIViewController+NavigationBar.h */,
@@ -363,8 +373,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5D8A2C9206B43E400623CE7 /* AYNavigationConfiguration.m in Sources */,
 				B5753080206A24170076054A /* UIViewController+NavigationBar.m in Sources */,
 				465DA7621FD1046E00BAC8D1 /* NextViewController.m in Sources */,
+				B5D8A2C8206B43E400623CE7 /* AYNavigation.m in Sources */,
 				465DA72B1FD1020B00BAC8D1 /* ViewController.m in Sources */,
 				465DA7691FD1084E00BAC8D1 /* AYNavigationBar.m in Sources */,
 				465DA7361FD1020B00BAC8D1 /* main.m in Sources */,

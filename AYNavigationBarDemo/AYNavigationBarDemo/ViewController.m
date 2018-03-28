@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "NextViewController.h"
 
-#import "UIViewController+NavigationBar.h"
+#import "AYNavigation.h"
 
 @interface ViewController ()
 
@@ -22,7 +22,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.ay_navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightBtnAction)];
+    self.ay_navigation.item.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightBtnAction)];
     
 }
 

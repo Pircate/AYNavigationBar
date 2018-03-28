@@ -7,10 +7,21 @@
 //
 
 #import "UIViewController+NavigationBar.h"
+#import "AYNavigationBar.h"
+#import "AYNavigation.h"
+#import "AYNavigationConfiguration.h"
 
 #import <objc/runtime.h>
 
-@implementation UIViewController (NavigationBar)
+@interface UIViewController (NavigationBarPrivate)
+
+@property (nonatomic, strong) AYNavigationBar *ay_navigationBar;
+
+@property (nonatomic, strong) UINavigationItem *ay_navigationItem;
+
+@end
+
+@implementation UIViewController (NavigationBarPrivate)
 
 + (void)load
 {
@@ -40,24 +51,26 @@
 
 - (void)bindNavigationBar
 {
-    if (!self.navigationController) {
-        return;
-    }
+    if (!self.navigationController) return;
+    if (!self.navigationController.ay_navigation.configuration.enabled) return;
     self.navigationController.navigationBar.hidden = YES;
-    self.ay_navigationBar.barTintColor = self.navigationController.navigationBar.barTintColor;
-    self.ay_navigationBar.shadowImage = self.navigationController.navigationBar.shadowImage;
-    self.ay_navigationBar.titleTextAttributes = self.navigationController.navigationBar.titleTextAttributes;
-    UIImage *backgroundImage = [self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsDefault];
-    [self.ay_navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
+    [self configuraNavigationBarStyle];
     [self.view addSubview:self.ay_navigationBar];
 }
 
 - (void)bringNavigationBarToFront
 {
-    if (!self.navigationController) {
-        return;
-    }
+    if (!self.navigationController) return;
+    if (!self.navigationController.ay_navigation.configuration.enabled) return;
     [self.view bringSubviewToFront:self.ay_navigationBar];
+}
+
+- (void)configuraNavigationBarStyle
+{
+    self.ay_navigationBar.barTintColor = self.navigationController.ay_navigation.configuration.barTintColor;
+    self.ay_navigationBar.shadowImage = self.navigationController.ay_navigation.configuration.shadowImage;
+    self.ay_navigationBar.titleTextAttributes = self.navigationController.ay_navigation.configuration.titleTextAttributes;
+    [self.ay_navigationBar setBackgroundImage:self.navigationController.ay_navigation.configuration.backgroundImage forBarMetrics:UIBarMetricsDefault];
 }
 
 #pragma mark - getter & setter
@@ -91,6 +104,24 @@
     objc_setAssociatedObject(self, @selector(ay_navigationItem), ay_navigationItem, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+- (AYNavigation *)ay_navigation
+{
+    AYNavigation *navigation = objc_getAssociatedObject(self, _cmd);
+    if (!navigation) {
+        navigation = [[AYNavigation alloc] init];
+        navigation.bar = self.ay_navigationBar;
+        navigation.item = self.ay_navigationItem;
+        navigation.configuration = [[AYNavigationConfiguration alloc] init];
+        objc_setAssociatedObject(self, @selector(ay_navigation), navigation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return navigation;
+}
+
+- (void)setAy_navigation:(AYNavigation *)ay_navigation
+{
+    objc_setAssociatedObject(self, @selector(ay_navigation), ay_navigation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 @end
 
 @implementation UINavigationController (NavigationBar)
@@ -98,7 +129,7 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    self.topViewController.ay_navigationBar.frame = self.navigationBar.frame;
+    self.topViewController.ay_navigation.bar.frame = self.navigationBar.frame;
 }
 
 @end

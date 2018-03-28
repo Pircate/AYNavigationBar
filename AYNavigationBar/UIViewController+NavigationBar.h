@@ -7,13 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AYNavigationBar.h"
 
+@class AYNavigation;
 @interface UIViewController (NavigationBar)
 
-@property (nonatomic, strong) AYNavigationBar *ay_navigationBar;
-
-@property (nonatomic, strong) UINavigationItem *ay_navigationItem;
+@property (nonatomic, strong) AYNavigation *ay_navigation;
 
 @end
 

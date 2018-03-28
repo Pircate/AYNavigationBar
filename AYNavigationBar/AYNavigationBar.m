@@ -38,7 +38,6 @@
     }
 }
 
-#pragma mark - getter & setter
 - (CGFloat)alpha
 {
     return _barBackgroundAlpha;

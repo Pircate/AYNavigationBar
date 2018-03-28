@@ -30,6 +30,6 @@ pod 'AYNavigationBar'
 ```
 #### view controller setting
 ``` objc
-    self.ay_navigation.bar  -> UINavigationBar
-    self.ay_navigation.item -> UINavigationItem
+   self.ay_navigation.bar  -> UINavigationBar
+   self.ay_navigation.item -> UINavigationItem
 ```

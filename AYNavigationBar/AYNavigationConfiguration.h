@@ -23,6 +23,10 @@
 
 @property (nonatomic, strong) UIImage *backgroundImage;
 
+@property (nonatomic, assign) UIBarPosition position;
+
+@property (nonatomic, assign) UIBarMetrics metrics;
+
 @property (nonatomic, strong) UIImage *shadowImage;
 
 @property (nonatomic, copy) NSDictionary<NSAttributedStringKey, id> *titleTextAttributes;

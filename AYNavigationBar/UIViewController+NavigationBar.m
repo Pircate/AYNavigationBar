@@ -71,7 +71,7 @@
     self.ay_navigationBar.barTintColor = configuration.barTintColor;
     self.ay_navigationBar.shadowImage = configuration.shadowImage;
     self.ay_navigationBar.titleTextAttributes = configuration.titleTextAttributes;
-    [self.ay_navigationBar setBackgroundImage:configuration.backgroundImage forBarMetrics:UIBarMetricsDefault];
+    [self.ay_navigationBar setBackgroundImage:configuration.backgroundImage forBarPosition:configuration.position barMetrics:configuration.metrics];
 }
 
 #pragma mark - getter & setter

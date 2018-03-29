@@ -133,7 +133,7 @@
     
     AYNavigationBar *bar = self.topViewController.ay_navigation.bar;
     CGRect frame = bar.frame;
-    if (bar.isUnrestoredWhenViewDidLayoutSubviews) {
+    if (bar.isUnrestoredWhenViewWillLayoutSubviews) {
         frame.size = self.navigationBar.frame.size;
     }
     else {

@@ -11,9 +11,9 @@
 @interface AYNavigationBar : UINavigationBar
 
 /**
- Default is false. If set true, navigation bar will not restore when the UINavigationController call viewDidLayoutSubviews
+ Default is false. If set true, navigation bar will not restore when the UINavigationController call viewWillLayoutSubviews
  */
-@property (nonatomic, assign) BOOL isUnrestoredWhenViewDidLayoutSubviews;
+@property (nonatomic, assign) BOOL isUnrestoredWhenViewWillLayoutSubviews;
 
 - (instancetype)initWithNavigationItem:(UINavigationItem *)navigationItem;
 

@@ -41,20 +41,10 @@
     }
 }
 
-- (CGFloat)alpha
-{
-    return _barBackgroundAlpha > 0.01 ? _barBackgroundAlpha : 0.01;
-}
-
 - (void)setAlpha:(CGFloat)alpha
 {
     _barBackgroundAlpha = alpha;
     self.subviews.firstObject.alpha = alpha;
-}
-
-- (UIColor *)backgroundColor
-{
-    return self.barTintColor;
 }
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor

@@ -13,6 +13,11 @@ pod 'AYNavigationBar'
 
 ## Usage
 
+### Import
+``` objc
+   #import "AYNavigation.h"
+```
+
 ### To enable AYNavigationBar of a navigation controller
 
 ``` objc

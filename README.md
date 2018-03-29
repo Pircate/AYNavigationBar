@@ -1,4 +1,4 @@
-# AYNavigationBar
+# AYNavigation
 
 ## Overview
    ![snapshot](https://github.com/CodeABug/AYNavigationBar/blob/master/demo.gif)

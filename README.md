@@ -8,7 +8,7 @@
 Use CocoaPods  
 
 ``` ruby
-pod 'AYNavigationBar'
+   pod 'AYNavigationBar'
 ```
 
 ## Usage

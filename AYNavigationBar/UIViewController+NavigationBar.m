@@ -15,9 +15,9 @@
 
 @interface UIViewController (NavigationBarPrivate)
 
-@property (nonatomic, strong) AYNavigationBar *ay_navigationBar;
+@property (nonatomic, strong) AYNavigationBar *ay__navigationBar;
 
-@property (nonatomic, strong) UINavigationItem *ay_navigationItem;
+@property (nonatomic, strong) UINavigationItem *ay__navigationItem;
 
 @end
 
@@ -55,54 +55,54 @@
     if (!self.navigationController.ay_navigation.configuration.enabled) return;
     self.navigationController.navigationBar.hidden = YES;
     [self configuraNavigationBarStyle];
-    [self.view addSubview:self.ay_navigationBar];
+    [self.view addSubview:self.ay__navigationBar];
 }
 
 - (void)bringNavigationBarToFront
 {
     if (!self.navigationController) return;
     if (!self.navigationController.ay_navigation.configuration.enabled) return;
-    [self.view bringSubviewToFront:self.ay_navigationBar];
+    [self.view bringSubviewToFront:self.ay__navigationBar];
 }
 
 - (void)configuraNavigationBarStyle
 {
     AYNavigationConfiguration *configuration = self.navigationController.ay_navigation.configuration;
-    self.ay_navigationBar.barTintColor = configuration.barTintColor;
-    self.ay_navigationBar.shadowImage = configuration.shadowImage;
-    self.ay_navigationBar.titleTextAttributes = configuration.titleTextAttributes;
-    [self.ay_navigationBar setBackgroundImage:configuration.backgroundImage forBarPosition:configuration.position barMetrics:configuration.metrics];
+    self.ay__navigationBar.barTintColor = configuration.barTintColor;
+    self.ay__navigationBar.shadowImage = configuration.shadowImage;
+    self.ay__navigationBar.titleTextAttributes = configuration.titleTextAttributes;
+    [self.ay__navigationBar setBackgroundImage:configuration.backgroundImage forBarPosition:configuration.position barMetrics:configuration.metrics];
 }
 
 #pragma mark - getter & setter
-- (AYNavigationBar *)ay_navigationBar
+- (AYNavigationBar *)ay__navigationBar
 {
     AYNavigationBar *navigationBar = objc_getAssociatedObject(self, _cmd);
     if (!navigationBar) {
-        navigationBar = [[AYNavigationBar alloc] initWithNavigationItem:self.ay_navigationItem];
-        objc_setAssociatedObject(self, @selector(ay_navigationBar), navigationBar, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        navigationBar = [[AYNavigationBar alloc] initWithNavigationItem:self.ay__navigationItem];
+        objc_setAssociatedObject(self, @selector(ay__navigationBar), navigationBar, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return navigationBar;
 }
 
-- (void)setAy_navigationBar:(AYNavigationBar *)ay_navigationBar
+- (void)setAy__navigationBar:(AYNavigationBar *)ay__navigationBar
 {
-    objc_setAssociatedObject(self, @selector(ay_navigationBar), ay_navigationBar, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(ay__navigationBar), ay__navigationBar, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (UINavigationItem *)ay_navigationItem
+- (UINavigationItem *)ay__navigationItem
 {
     UINavigationItem *navigationItem = objc_getAssociatedObject(self, _cmd);
     if (!navigationItem) {
         navigationItem = [[UINavigationItem alloc] init];
-        objc_setAssociatedObject(self, @selector(ay_navigationItem), navigationItem, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self, @selector(ay__navigationItem), navigationItem, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return navigationItem;
 }
 
-- (void)setAy_navigationItem:(UINavigationItem *)ay_navigationItem
+- (void)setAy__navigationItem:(UINavigationItem *)ay__navigationItem
 {
-    objc_setAssociatedObject(self, @selector(ay_navigationItem), ay_navigationItem, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(ay__navigationItem), ay__navigationItem, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (AYNavigation *)ay_navigation
@@ -110,8 +110,8 @@
     AYNavigation *navigation = objc_getAssociatedObject(self, _cmd);
     if (!navigation) {
         navigation = [[AYNavigation alloc] init];
-        navigation.bar = self.ay_navigationBar;
-        navigation.item = self.ay_navigationItem;
+        navigation.bar = self.ay__navigationBar;
+        navigation.item = self.ay__navigationItem;
         navigation.configuration = [[AYNavigationConfiguration alloc] init];
         objc_setAssociatedObject(self, @selector(ay_navigation), navigation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }

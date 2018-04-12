@@ -32,6 +32,7 @@ Use CocoaPods
    nav.ay_navigation.configuration.barTintColor = [UIColor cyanColor];
    nav.ay_navigation.configuration.backgroundImage = [UIImage imageNamed:@"nav"];
    nav.ay_navigation.configuration.shadowImage = [UIImage imageNamed:@"shadow"];
+   nav.ay_navigation.configuration.extraHeight = 14;
 ```
 #### view controller setting
 ``` objc

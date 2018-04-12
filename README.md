@@ -34,8 +34,15 @@ Use CocoaPods
    nav.ay_navigation.configuration.shadowImage = [UIImage imageNamed:@"shadow"];
    nav.ay_navigation.configuration.extraHeight = 14;
 ```
-#### view controller setting
+#### each setting
+#### normal
 ``` objc
    self.ay_navigation.bar  -> UINavigationBar
    self.ay_navigation.item -> UINavigationItem
+```
+#### additional
+``` objc
+   // override alpha & backgroundColor
+   self.ay_navigation.bar.alpha ->　UINavigationBar.barBackgroundView.alpha
+   self.ay_navigation.bar.backgroundColor -> UINavigationBar.barTintColor
 ```

@@ -10,6 +10,7 @@
 
 #import "AYNavigation.h"
 #import "ViewController.h"
+#import "YYFPSLabel.h"
 
 @interface AppDelegate ()
 
@@ -31,6 +32,8 @@
     nav.ay_navigation.configuration.barTintColor = [UIColor cyanColor];
     nav.ay_navigation.configuration.backgroundImage = [UIImage imageNamed:@"nav"];
     nav.ay_navigation.configuration.shadowImage = [UIImage imageNamed:@"shadow"];
+    YYFPSLabel *fpsLabel = [[YYFPSLabel alloc] initWithFrame:CGRectMake(0, 200, 60, 20)];
+    [nav.view addSubview:fpsLabel];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
     

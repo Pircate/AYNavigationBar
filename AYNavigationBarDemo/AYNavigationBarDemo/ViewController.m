@@ -47,18 +47,23 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGFloat offsetY = -scrollView.contentOffset.y + CGRectGetMaxY(UIApplication.sharedApplication.statusBarFrame);
+    CGFloat alpha = 1 - (scrollView.contentOffset.y) / CGRectGetMaxY(self.ay_navigation.bar.frame);
     if (offsetY <= CGRectGetMaxY(UIApplication.sharedApplication.statusBarFrame)) {
         CGRect frame = self.ay_navigation.bar.frame;
-        BOOL flag = offsetY > -24;
-        frame.origin.y = flag ? offsetY : -24;
-        self.ay_navigation.bar.tintColor = flag ? [UIColor blueColor] : [UIColor clearColor];
-        self.ay_navigation.item.title = flag ? @"首页" : nil;
+        CGFloat offset = -24 - self.navigationController.ay_navigation.configuration.extraHeight;
+        BOOL flag = offsetY > offset;
+        frame.origin.y = flag ? offsetY : offset;
         self.ay_navigation.bar.frame = frame;
+        UIColor *color = [[UIColor blueColor] colorWithAlphaComponent:alpha];
+        self.ay_navigation.bar.tintColor = color;
+        self.ay_navigation.bar.titleTextAttributes = @{NSForegroundColorAttributeName: color};
     }
     else {
         CGRect frame = self.ay_navigation.bar.frame;
         frame.origin.y = CGRectGetMaxY(UIApplication.sharedApplication.statusBarFrame);
         self.ay_navigation.bar.frame = frame;
+        self.ay_navigation.bar.tintColor = [UIColor blueColor];
+        self.ay_navigation.bar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor blueColor]};
     }
 }
 

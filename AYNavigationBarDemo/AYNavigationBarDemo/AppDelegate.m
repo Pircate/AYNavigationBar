@@ -25,6 +25,7 @@
     ViewController *vc = [[ViewController alloc] init];
     vc.ay_navigation.item.title = @"首页";
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.ay_navigation.configuration.extraHeight = 14;
     nav.ay_navigation.configuration.enabled = YES;
     nav.ay_navigation.configuration.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor blueColor]};
     nav.ay_navigation.configuration.barTintColor = [UIColor cyanColor];

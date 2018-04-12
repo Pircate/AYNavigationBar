@@ -133,11 +133,14 @@
     
     AYNavigationBar *bar = self.topViewController.ay_navigation.bar;
     CGRect frame = bar.frame;
+    CGRect barFrame = self.navigationBar.frame;
     if (bar.isUnrestoredWhenViewWillLayoutSubviews) {
-        frame.size = self.navigationBar.frame.size;
+        frame.size = barFrame.size;
+        frame.size.height = barFrame.size.height + self.ay_navigation.configuration.extraHeight;
     }
     else {
-        frame = self.navigationBar.frame;
+        frame = barFrame;
+        frame.size.height = barFrame.size.height + self.ay_navigation.configuration.extraHeight;
     }
     bar.frame = frame;
 }

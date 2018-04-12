@@ -31,4 +31,6 @@
 
 @property (nonatomic, copy) NSDictionary<NSAttributedStringKey, id> *titleTextAttributes;
 
+@property (nonatomic, assign) CGFloat extraHeight;
+
 @end

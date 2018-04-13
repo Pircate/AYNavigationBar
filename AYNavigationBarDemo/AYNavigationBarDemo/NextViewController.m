@@ -32,6 +32,9 @@
     self.ay_navigation.item.title = @"下一页";
     self.ay_navigation.bar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor redColor]};
     
+    if (@available(iOS 11.0, *)) {
+        self.ay_navigation.bar.prefersLargeTitles = YES;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

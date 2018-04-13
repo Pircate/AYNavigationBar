@@ -28,6 +28,10 @@
     [self.view addSubview:self.tipLabel];
     
     self.ay_navigation.item.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(rightBtnAction)];
+    if (@available(iOS 11.0, *)) {
+        self.ay_navigation.bar.prefersLargeTitles = YES;
+        self.navigationController.navigationBar.prefersLargeTitles = YES;
+    }
     self.ay_navigation.bar.isUnrestoredWhenViewWillLayoutSubviews = YES;
 }
 
@@ -46,11 +50,12 @@
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    CGFloat offsetY = -scrollView.contentOffset.y + CGRectGetMaxY(UIApplication.sharedApplication.statusBarFrame);
+    CGFloat statusBarHeight = CGRectGetMaxY(UIApplication.sharedApplication.statusBarFrame);
+    CGFloat offsetY = -scrollView.contentOffset.y + statusBarHeight;
     CGFloat alpha = 1 - (scrollView.contentOffset.y) / CGRectGetMaxY(self.ay_navigation.bar.frame);
-    if (offsetY <= CGRectGetMaxY(UIApplication.sharedApplication.statusBarFrame)) {
+    if (offsetY <= statusBarHeight) {
         CGRect frame = self.ay_navigation.bar.frame;
-        CGFloat offset = -24 - self.navigationController.ay_navigation.configuration.extraHeight;
+        CGFloat offset = statusBarHeight - 44;
         BOOL flag = offsetY > offset;
         frame.origin.y = flag ? offsetY : offset;
         self.ay_navigation.bar.frame = frame;

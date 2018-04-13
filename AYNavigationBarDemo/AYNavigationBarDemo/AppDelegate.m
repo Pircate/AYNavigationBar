@@ -26,12 +26,12 @@
     ViewController *vc = [[ViewController alloc] init];
     vc.ay_navigation.item.title = @"首页";
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.ay_navigation.configuration.extraHeight = 14;
+//    nav.ay_navigation.configuration.extraHeight = 14;
     nav.ay_navigation.configuration.enabled = YES;
     nav.ay_navigation.configuration.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor blueColor]};
     nav.ay_navigation.configuration.barTintColor = [UIColor cyanColor];
     nav.ay_navigation.configuration.backgroundImage = [UIImage imageNamed:@"nav"];
-    nav.ay_navigation.configuration.shadowImage = [UIImage imageNamed:@"shadow"];
+    nav.ay_navigation.configuration.shadowImage = [[UIImage alloc] init];
     YYFPSLabel *fpsLabel = [[YYFPSLabel alloc] initWithFrame:CGRectMake(0, 200, 60, 20)];
     [nav.view addSubview:fpsLabel];
     self.window.rootViewController = nav;

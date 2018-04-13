@@ -132,6 +132,9 @@
     [super viewWillLayoutSubviews];
     
     AYNavigationBar *bar = self.topViewController.ay_navigation.bar;
+    
+    if (@available(iOS 11.0, *)) bar.prefersLargeTitles = self.navigationBar.prefersLargeTitles;
+    
     CGRect frame = bar.frame;
     CGRect barFrame = self.navigationBar.frame;
     if (bar.isUnrestoredWhenViewWillLayoutSubviews) {

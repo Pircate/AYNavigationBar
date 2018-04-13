@@ -29,8 +29,8 @@
     
     self.ay_navigation.item.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(rightBtnAction)];
     if (@available(iOS 11.0, *)) {
-        self.ay_navigation.bar.prefersLargeTitles = YES;
         self.navigationController.navigationBar.prefersLargeTitles = YES;
+        self.ay_navigation.bar.prefersLargeTitles = YES;
     }
     self.ay_navigation.bar.isUnrestoredWhenViewWillLayoutSubviews = YES;
 }

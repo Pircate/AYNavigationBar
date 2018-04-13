@@ -141,6 +141,9 @@
     else {
         frame = barFrame;
         frame.size.height = barFrame.size.height + self.ay_navigation.configuration.extraHeight;
+        if (@available(iOS 11.0, *)) {
+            if (self.navigationBar.prefersLargeTitles) frame.origin.y = CGRectGetMaxY(UIApplication.sharedApplication.statusBarFrame);
+        }
     }
     bar.frame = frame;
 }

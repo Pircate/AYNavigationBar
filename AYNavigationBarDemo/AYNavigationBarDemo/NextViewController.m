@@ -33,7 +33,7 @@
     self.ay_navigation.bar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor redColor]};
     
     if (@available(iOS 11.0, *)) {
-        self.ay_navigation.bar.prefersLargeTitles = YES;
+        self.navigationItem.largeTitleDisplayMode = UINavigationItemLargeTitleDisplayModeNever;
     }
 }
 

@@ -48,8 +48,13 @@ Use CocoaPods
 ```
 #### largeTitle(iOS 11.0+)
 ``` objc
+   // show
    if (@available(iOS 11.0, *)) {
       self.navigationController.navigationBar.prefersLargeTitles = YES;
       self.ay_navigation.bar.prefersLargeTitles = YES;
+   }
+   // hide
+   if (@available(iOS 11.0, *)) {
+      self.navigationItem.largeTitleDisplayMode = UINavigationItemLargeTitleDisplayModeNever;
    }
 ```

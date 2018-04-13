@@ -7,6 +7,7 @@
 //
 
 #import "NextViewController.h"
+#import "ViewController.h"
 
 #import "AYNavigation.h"
 
@@ -30,6 +31,7 @@
     [self.ay_navigation.bar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     self.ay_navigation.bar.barTintColor = [UIColor blueColor];
     self.ay_navigation.item.title = @"下一页";
+    self.ay_navigation.item.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(next)];
     self.ay_navigation.bar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor redColor]};
     
     if (@available(iOS 11.0, *)) {
@@ -40,6 +42,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)next
+{
+    [self.navigationController pushViewController:[[ViewController alloc] init] animated:YES];
 }
 
 #pragma mark - UIScrollViewDelegate

@@ -27,9 +27,11 @@
     [self.view addSubview:self.scrollView];
     [self.view addSubview:self.tipLabel];
     
+    self.ay_navigation.item.title = @"首页";
     self.ay_navigation.item.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(rightBtnAction)];
     if (@available(iOS 11.0, *)) {
         self.navigationController.navigationBar.prefersLargeTitles = YES;
+        self.navigationItem.largeTitleDisplayMode = UINavigationItemLargeTitleDisplayModeAlways;
     }
     self.ay_navigation.bar.isUnrestoredWhenViewWillLayoutSubviews = YES;
 }

@@ -133,7 +133,10 @@
     
     AYNavigationBar *bar = self.topViewController.ay_navigation.bar;
     
-    if (@available(iOS 11.0, *)) bar.prefersLargeTitles = self.navigationBar.prefersLargeTitles;
+    if (@available(iOS 11.0, *)) {
+        bar.prefersLargeTitles = self.navigationBar.prefersLargeTitles;
+        bar.largeTitleTextAttributes = self.navigationBar.largeTitleTextAttributes;
+    }
     
     CGRect frame = bar.frame;
     CGRect barFrame = self.navigationBar.frame;

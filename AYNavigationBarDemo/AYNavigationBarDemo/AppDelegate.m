@@ -24,7 +24,6 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     ViewController *vc = [[ViewController alloc] init];
-    vc.ay_navigation.item.title = @"首页";
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
 //    nav.ay_navigation.configuration.extraHeight = 14;
     nav.ay_navigation.configuration.enabled = YES;

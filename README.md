@@ -46,8 +46,10 @@ Use CocoaPods
    self.ay_navigation.bar.alpha ->　UINavigationBar.barBackgroundView.alpha
    self.ay_navigation.bar.backgroundColor -> UINavigationBar.barTintColor
 ```
-#### largeTitle(iOS11.0+)
+#### largeTitle(iOS 11.0+)
 ``` objc
-   self.navigationController.navigationBar.prefersLargeTitles = YES;
-   self.ay_navigation.bar.prefersLargeTitles = YES;
+   if (@available(iOS 11.0, *)) {
+      self.navigationController.navigationBar.prefersLargeTitles = YES;
+      self.ay_navigation.bar.prefersLargeTitles = YES;
+   }
 ```

@@ -15,7 +15,7 @@ Use CocoaPods
 
 ### Import
 ``` objc
-   #import "AYNavigation.h"
+   #import "AYNavigationBar.h"
 ```
 
 ### To enable AYNavigationBar of a navigation controller
@@ -48,10 +48,13 @@ Use CocoaPods
 ```
 #### largeTitle(iOS 11.0+)
 ``` objc
+   // enable
+   if (@available(iOS 11.0, *)) {
+      self.navigationController.navigationBar.prefersLargeTitles = YES; // once
+   }
    // show
    if (@available(iOS 11.0, *)) {
-      self.navigationController.navigationBar.prefersLargeTitles = YES;
-      self.ay_navigation.bar.prefersLargeTitles = YES;
+      self.navigationItem.largeTitleDisplayMode = UINavigationItemLargeTitleDisplayModeAlways;
    }
    // hide
    if (@available(iOS 11.0, *)) {

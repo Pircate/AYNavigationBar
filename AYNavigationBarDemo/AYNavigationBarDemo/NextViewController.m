@@ -9,7 +9,7 @@
 #import "NextViewController.h"
 #import "ViewController.h"
 
-#import "AYNavigation.h"
+#import "UIViewController+AYNavigationBar.h"
 
 @interface NextViewController () <UIScrollViewDelegate>
 

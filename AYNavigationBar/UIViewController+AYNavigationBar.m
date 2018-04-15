@@ -1,27 +1,16 @@
 //
-//  UIViewController+NavigationBar.m
-//  UIViewController+NavigationBar
+//  UIViewController+AYNavigationBar.m
+//  UIViewController+AYNavigationBar
 //
 //  Created by G-Xi0N on 2018/3/26.
 //  Copyright © 2018年 gaoX. All rights reserved.
 //
 
-#import "UIViewController+NavigationBar.h"
-#import "AYNavigationBar.h"
-#import "AYNavigation.h"
-#import "AYNavigationConfiguration.h"
+#import "UIViewController+AYNavigationBar.h"
 
 #import <objc/runtime.h>
 
-@interface UIViewController (NavigationBarPrivate)
-
-@property (nonatomic, strong) AYNavigationBar *ay__navigationBar;
-
-@property (nonatomic, strong) UINavigationItem *ay__navigationItem;
-
-@end
-
-@implementation UIViewController (NavigationBarPrivate)
+@implementation UIViewController (AYNavigationBar)
 
 + (void)load
 {

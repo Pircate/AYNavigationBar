@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 
-#import "AYNavigation.h"
+#import "UIViewController+AYNavigationBar.h"
 #import "ViewController.h"
 #import "YYFPSLabel.h"
 

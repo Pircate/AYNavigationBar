@@ -7,6 +7,8 @@
 //
 
 #import "AYNavigation.h"
+#import "AYNavigationBar.h"
+#import "AYNavigationConfiguration.h"
 
 @implementation AYNavigation
 

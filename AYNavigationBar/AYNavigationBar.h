@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AYNavigation.h"
+#import "AYNavigationConfiguration.h"
+#import "UIViewController+NavigationBar.h"
 
 @interface AYNavigationBar : UINavigationBar
 

@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "AYNavigationBar.h"
-#import "AYNavigationConfiguration.h"
-#import "UIViewController+NavigationBar.h"
+
+@class AYNavigationBar;
+@class AYNavigationConfiguration;
 
 @interface AYNavigation : NSObject
 

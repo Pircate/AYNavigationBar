@@ -174,10 +174,10 @@
 			children = (
 				B5D8A2C4206B43E400623CE7 /* AYNavigation.h */,
 				B5D8A2C5206B43E400623CE7 /* AYNavigation.m */,
-				B5D8A2C6206B43E400623CE7 /* AYNavigationConfiguration.h */,
-				B5D8A2C7206B43E400623CE7 /* AYNavigationConfiguration.m */,
 				465DA7641FD1084E00BAC8D1 /* AYNavigationBar.h */,
 				465DA7651FD1084E00BAC8D1 /* AYNavigationBar.m */,
+				B5D8A2C6206B43E400623CE7 /* AYNavigationConfiguration.h */,
+				B5D8A2C7206B43E400623CE7 /* AYNavigationConfiguration.m */,
 				B575307E206A24170076054A /* UIViewController+AYNavigationBar.h */,
 				B575307F206A24170076054A /* UIViewController+AYNavigationBar.m */,
 			);
@@ -216,8 +216,6 @@
 				465DA71F1FD1020B00BAC8D1 /* Sources */,
 				465DA7201FD1020B00BAC8D1 /* Frameworks */,
 				465DA7211FD1020B00BAC8D1 /* Resources */,
-				65336DECC72EEB8D6407EE73 /* [CP] Embed Pods Frameworks */,
-				097FB34504DF389F2C3FE30C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -336,36 +334,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		097FB34504DF389F2C3FE30C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AYNavigationBarDemo/Pods-AYNavigationBarDemo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		65336DECC72EEB8D6407EE73 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AYNavigationBarDemo/Pods-AYNavigationBarDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		A1C9464C2FD6864C6F93B9AC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

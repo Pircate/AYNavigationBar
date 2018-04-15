@@ -1,4 +1,4 @@
-# AYNavigation
+# AYNavigationBar
 
 ## Overview
    ![snapshot](https://github.com/CodeABug/AYNavigationBar/blob/master/demo.gif)
@@ -15,7 +15,7 @@ Use CocoaPods
 
 ### Import
 ``` objc
-   #import "AYNavigationBar.h"
+   #import "UIViewController+AYNavigationBar.h"
 ```
 
 ### To enable AYNavigationBar of a navigation controller
@@ -25,7 +25,7 @@ Use CocoaPods
    nav.ay_navigation.configuration.enabled = YES;
 ```
 ### Setting
-#### global setting
+#### Global
 ``` objc
    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
    nav.ay_navigation.configuration.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor blueColor]};
@@ -34,19 +34,19 @@ Use CocoaPods
    nav.ay_navigation.configuration.shadowImage = [UIImage imageNamed:@"shadow"];
    nav.ay_navigation.configuration.extraHeight = 14;
 ```
-#### each setting
-#### normal
+#### Each view controller
+##### normal
 ``` objc
    self.ay_navigation.bar  -> UINavigationBar
    self.ay_navigation.item -> UINavigationItem
 ```
-#### additional
+##### additional
 ``` objc
    // override alpha & backgroundColor
    self.ay_navigation.bar.alpha ->　UINavigationBar.barBackgroundView.alpha
    self.ay_navigation.bar.backgroundColor -> UINavigationBar.barTintColor
 ```
-#### largeTitle(iOS 11.0+)
+##### largeTitle(iOS 11.0+)
 ``` objc
    // enable
    if (@available(iOS 11.0, *)) {

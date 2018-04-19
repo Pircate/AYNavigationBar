@@ -79,7 +79,7 @@
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
         _scrollView.delegate = self;
-        _scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, 1000);
+        _scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.width + 500);
         if (@available(iOS 11.0, *)) {
             _scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         } else {

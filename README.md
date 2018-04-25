@@ -36,6 +36,8 @@ nav.ay_navigation.configuration.titleTextAttributes = @{NSForegroundColorAttribu
 nav.ay_navigation.configuration.barTintColor = [UIColor cyanColor];
 nav.ay_navigation.configuration.backgroundImage = [UIImage imageNamed:@"nav"];
 nav.ay_navigation.configuration.shadowImage = [UIImage imageNamed:@"shadow"];
+nav.ay_navigation.configuration.translucent = NO;
+nav.ay_navigation.configuration.barStyle = UIBarStyleBlack;
 nav.ay_navigation.configuration.extraHeight = 14;
 ```
 
@@ -45,6 +47,18 @@ nav.ay_navigation.configuration.extraHeight = 14;
 ``` objc
 self.ay_navigation.bar  -> UINavigationBar
 self.ay_navigation.item -> UINavigationItem
+
+// remove blur effect
+self.ay_navigation.bar.translucent = NO;
+
+// hide bottom black line
+self.ay_navigation.bar.barStyle = UIBarStyleBlack;
+
+// if you need to set status bar style lightContent
+self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+
+// if you want change navigation bar position
+self.ay_navigation.bar.isUnrestoredWhenViewWillLayoutSubviews = YES;
 ```
 
 ##### additional

@@ -32,10 +32,6 @@
     
     self.subviews.firstObject.alpha = _barBackgroundAlpha;
     self.subviews.firstObject.frame = CGRectMake(0, -CGRectGetMaxY(UIApplication.sharedApplication.statusBarFrame), self.bounds.size.width, self.bounds.size.height + CGRectGetMaxY(UIApplication.sharedApplication.statusBarFrame));
-    UIVisualEffectView *visualEffectView = (UIVisualEffectView *)self.subviews.firstObject.subviews.lastObject;
-    if ([visualEffectView isKindOfClass:[UIVisualEffectView class]]) {
-        visualEffectView.contentView.backgroundColor = self.barTintColor;
-    }
 }
 
 - (void)setAlpha:(CGFloat)alpha
@@ -47,15 +43,6 @@
 - (void)setBackgroundColor:(UIColor *)backgroundColor
 {
     self.barTintColor = backgroundColor;
-}
-
-- (void)setBarTintColor:(UIColor *)barTintColor
-{
-    [super setBarTintColor:barTintColor];
-    UIVisualEffectView *visualEffectView = (UIVisualEffectView *)self.subviews.firstObject.subviews.lastObject;
-    if ([visualEffectView isKindOfClass:[UIVisualEffectView class]]) {
-        visualEffectView.contentView.backgroundColor = self.barTintColor;
-    }
 }
 
 @end

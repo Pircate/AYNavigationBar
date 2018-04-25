@@ -29,11 +29,24 @@
     
     self.ay_navigation.item.title = @"首页";
     self.ay_navigation.item.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(rightBtnAction)];
+    
+    // remove blur effect
+    self.ay_navigation.bar.translucent = NO;
+    
+    // hide bottom black line
+    self.ay_navigation.bar.barStyle = UIBarStyleBlack;
+    
+    // if you need to set status bar style lightContent
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    
+    // if you want change navigation bar position
+    self.ay_navigation.bar.isUnrestoredWhenViewWillLayoutSubviews = YES;
+    
     if (@available(iOS 11.0, *)) {
         self.navigationController.navigationBar.prefersLargeTitles = YES;
         self.navigationItem.largeTitleDisplayMode = UINavigationItemLargeTitleDisplayModeAlways;
     }
-    self.ay_navigation.bar.isUnrestoredWhenViewWillLayoutSubviews = YES;
+    
 }
 
 - (void)didReceiveMemoryWarning {

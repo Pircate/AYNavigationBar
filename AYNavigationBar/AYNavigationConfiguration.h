@@ -31,6 +31,10 @@
 
 @property (nonatomic, copy) NSDictionary<NSAttributedStringKey, id> *titleTextAttributes;
 
+@property (nonatomic, assign, getter = isTranslucent) BOOL translucent;
+
+@property (nonatomic, assign) UIBarStyle barStyle;
+
 @property (nonatomic, assign) CGFloat extraHeight;
 
 @end

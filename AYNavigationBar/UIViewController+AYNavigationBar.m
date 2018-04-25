@@ -61,6 +61,8 @@
     self.ay__navigationBar.shadowImage = configuration.shadowImage;
     self.ay__navigationBar.titleTextAttributes = configuration.titleTextAttributes;
     [self.ay__navigationBar setBackgroundImage:configuration.backgroundImage forBarPosition:configuration.position barMetrics:configuration.metrics];
+    self.ay__navigationBar.translucent = configuration.translucent;
+    self.ay__navigationBar.barStyle = configuration.barStyle;
 }
 
 #pragma mark - getter & setter

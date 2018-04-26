@@ -15,6 +15,8 @@
 
 @property (nonatomic, strong) AYNavigation *ay_navigation;
 
+- (void)ay_adjustsNavigationBarPosition;
+
 @end
 
 @interface UINavigationController (NavigationBar)

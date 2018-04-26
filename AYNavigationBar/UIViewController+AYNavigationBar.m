@@ -38,6 +38,14 @@
     [self bringNavigationBarToFront];
 }
 
+- (void)ay_adjustsNavigationBarPosition
+{
+    CGRect barFrame = self.navigationController.navigationBar.frame;
+    barFrame.size.height += self.ay_navigation.configuration.extraHeight;
+    self.ay__navigationBar.frame = barFrame;
+    [self.ay__navigationBar setNeedsLayout];
+}
+
 - (void)bindNavigationBar
 {
     if (!self.navigationController) return;
@@ -131,13 +139,12 @@
     
     CGRect frame = bar.frame;
     CGRect barFrame = self.navigationBar.frame;
+    barFrame.size.height += self.ay_navigation.configuration.extraHeight;
     if (bar.isUnrestoredWhenViewWillLayoutSubviews) {
         frame.size = barFrame.size;
-        frame.size.height = barFrame.size.height + self.ay_navigation.configuration.extraHeight;
     }
     else {
         frame = barFrame;
-        frame.size.height = barFrame.size.height + self.ay_navigation.configuration.extraHeight;
         if (@available(iOS 11.0, *)) {
             if (self.navigationBar.prefersLargeTitles) frame.origin.y = CGRectGetMaxY(UIApplication.sharedApplication.statusBarFrame);
         }

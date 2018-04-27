@@ -10,7 +10,6 @@
 #import "AYNavigation.h"
 #import "AYNavigationBar.h"
 #import "AYNavigationConfiguration.h"
-#import "UIBarButtonItem+Convenience.h"
 
 @interface UIViewController (AYNavigationBar)
 

@@ -33,9 +33,6 @@
     // remove blur effect
     self.ay_navigation.bar.translucent = NO;
     
-    // hide bottom black line
-    self.ay_navigation.bar.barStyle = UIBarStyleBlack;
-    
     // if you need to set status bar style lightContent
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     

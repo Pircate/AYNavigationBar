@@ -58,14 +58,6 @@ self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 self.ay_navigation.bar.isUnrestoredWhenViewWillLayoutSubviews = YES;
 ```
 
-##### additional
-
-``` objc
-// override alpha & backgroundColor
-self.ay_navigation.bar.alpha ->　UINavigationBar.barBackgroundView.alpha
-self.ay_navigation.bar.backgroundColor -> UINavigationBar.barTintColor
-```
-
 ##### largeTitle(iOS 11.0+)
 
 ``` objc

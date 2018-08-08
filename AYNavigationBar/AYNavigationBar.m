@@ -45,4 +45,13 @@
     self.barTintColor = backgroundColor;
 }
 
+- (void)setExtraHeight:(CGFloat)extraHeight
+{
+    _extraHeight = extraHeight;
+    
+    CGRect frame = self.frame;
+    frame.size.height = 44 + extraHeight;
+    self.frame = frame;
+}
+
 @end

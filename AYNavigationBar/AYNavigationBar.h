@@ -15,6 +15,8 @@
  */
 @property (nonatomic, assign) BOOL isUnrestoredWhenViewWillLayoutSubviews;
 
+@property (nonatomic, assign) CGFloat extraHeight;
+
 - (instancetype)initWithNavigationItem:(UINavigationItem *)navigationItem;
 
 @end

@@ -28,6 +28,7 @@
     [self.view addSubview:self.scrollView];
     [self.view addSubview:self.tipLabel];
     
+    self.ay_navigation.bar.extraHeight = 0;
     [self.ay_navigation.bar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     self.ay_navigation.bar.barTintColor = [UIColor blueColor];
     self.ay_navigation.item.title = @"下一页";

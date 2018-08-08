@@ -71,6 +71,7 @@
     [self.ay__navigationBar setBackgroundImage:configuration.backgroundImage forBarPosition:configuration.position barMetrics:configuration.metrics];
     self.ay__navigationBar.translucent = configuration.translucent;
     self.ay__navigationBar.barStyle = configuration.barStyle;
+    self.ay__navigationBar.extraHeight = configuration.extraHeight;
 }
 
 #pragma mark - getter & setter
@@ -132,6 +133,8 @@
     
     AYNavigationBar *bar = self.topViewController.ay_navigation.bar;
     
+    if (!bar) return;
+    
     if (@available(iOS 11.0, *)) {
         bar.prefersLargeTitles = self.navigationBar.prefersLargeTitles;
         bar.largeTitleTextAttributes = self.navigationBar.largeTitleTextAttributes;
@@ -139,16 +142,18 @@
     
     CGRect frame = bar.frame;
     CGRect barFrame = self.navigationBar.frame;
-    barFrame.size.height += self.ay_navigation.configuration.extraHeight;
     if (bar.isUnrestoredWhenViewWillLayoutSubviews) {
         frame.size = barFrame.size;
     }
     else {
         frame = barFrame;
         if (@available(iOS 11.0, *)) {
-            if (self.navigationBar.prefersLargeTitles) frame.origin.y = CGRectGetMaxY(UIApplication.sharedApplication.statusBarFrame);
+            if (self.navigationBar.prefersLargeTitles) {
+                frame.origin.y = CGRectGetMaxY(UIApplication.sharedApplication.statusBarFrame);
+            }
         }
     }
+    frame.size.height = barFrame.size.height + bar.extraHeight;
     bar.frame = frame;
 }
 

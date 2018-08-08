@@ -51,6 +51,11 @@ self.ay_navigation.item -> UINavigationItem
 // remove blur effect
 self.ay_navigation.bar.translucent = NO;
 
+// hide bottom black line
+self.ay_navigation.bar.shadowImage = [[UIImage alloc] init];
+// if version < iOS 11.0, also need:
+[self.ay_navigation.bar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+
 // if you need to set status bar style lightContent
 self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 

@@ -2,8 +2,8 @@
 //  AYNavigationConfiguration.h
 //  UIViewController+AYNavigationBar
 //
-//  Created by GorXion on 2018/3/28.
-//  Copyright © 2018年 gaoX. All rights reserved.
+//  Created by Pircate on 2018/3/28.
+//  Copyright © 2018年 Pircate. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -35,6 +35,9 @@
 
 @property (nonatomic, assign) UIBarStyle barStyle;
 
+/**
+ 额外高度
+ */
 @property (nonatomic, assign) CGFloat extraHeight;
 
 @end

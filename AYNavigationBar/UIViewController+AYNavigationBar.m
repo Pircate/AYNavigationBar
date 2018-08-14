@@ -29,40 +29,43 @@
 - (void)ay__viewDidLoad
 {
     [self ay__viewDidLoad];
-    [self bindNavigationBar];
+    [self ay__bindNavigationBar];
 }
 
 - (void)ay__viewWillAppear:(BOOL)animated
 {
     [self ay__viewWillAppear:animated];
-    [self bringNavigationBarToFront];
+    [self ay__bringNavigationBarToFront];
 }
 
+#pragma mark - public
 - (void)ay_adjustsNavigationBarPosition
 {
     CGRect barFrame = self.navigationController.navigationBar.frame;
-    barFrame.size.height += self.ay_navigation.configuration.extraHeight;
+    barFrame.size.height += self.ay__navigationBar.extraHeight;
     self.ay__navigationBar.frame = barFrame;
     [self.ay__navigationBar setNeedsLayout];
 }
 
-- (void)bindNavigationBar
+#pragma mark - private
+- (void)ay__bindNavigationBar
 {
     if (!self.navigationController) return;
     if (!self.navigationController.ay_navigation.configuration.enabled) return;
     self.navigationController.navigationBar.hidden = YES;
-    [self configuraNavigationBarStyle];
+    [self ay__configuraNavigationBarStyle];
+    [self ay__setupBackBarButtonItem];
     [self.view addSubview:self.ay__navigationBar];
 }
 
-- (void)bringNavigationBarToFront
+- (void)ay__bringNavigationBarToFront
 {
     if (!self.navigationController) return;
     if (!self.navigationController.ay_navigation.configuration.enabled) return;
     [self.view bringSubviewToFront:self.ay__navigationBar];
 }
 
-- (void)configuraNavigationBarStyle
+- (void)ay__configuraNavigationBarStyle
 {
     AYNavigationConfiguration *configuration = self.navigationController.ay_navigation.configuration;
     self.ay__navigationBar.barTintColor = configuration.barTintColor;
@@ -72,6 +75,19 @@
     self.ay__navigationBar.translucent = configuration.translucent;
     self.ay__navigationBar.barStyle = configuration.barStyle;
     self.ay__navigationBar.extraHeight = configuration.extraHeight;
+}
+
+- (void)ay__setupBackBarButtonItem
+{
+    UIImage *image = self.navigationController.ay_navigation.configuration.backImage;
+    if (self.navigationController.viewControllers.count > 1 && image) {
+        self.ay__navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(ay__backAction)];
+    }
+}
+
+- (void)ay__backAction
+{
+    [self.navigationController popViewControllerAnimated:true];
 }
 
 #pragma mark - getter & setter

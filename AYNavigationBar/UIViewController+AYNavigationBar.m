@@ -51,7 +51,7 @@
 - (void)ay__bindNavigationBar
 {
     if (!self.navigationController) return;
-    if (!self.navigationController.ay_navigation.configuration.enabled) return;
+    if (!self.navigationController.ay_navigation.configuration.isEnabled) return;
     self.navigationController.navigationBar.hidden = YES;
     [self ay__configuraNavigationBarStyle];
     [self ay__setupBackBarButtonItem];
@@ -61,7 +61,7 @@
 - (void)ay__bringNavigationBarToFront
 {
     if (!self.navigationController) return;
-    if (!self.navigationController.ay_navigation.configuration.enabled) return;
+    if (!self.navigationController.ay_navigation.configuration.isEnabled) return;
     [self.view bringSubviewToFront:self.ay__navigationBar];
 }
 

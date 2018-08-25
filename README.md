@@ -1,6 +1,9 @@
 # AYNavigationBar
 
+[![Build Status](https://travis-ci.org/Pircate/AYNavigationBar.svg?branch=master)](https://travis-ci.org/Pircate/AYNavigationBar)
 [![Version](https://img.shields.io/cocoapods/v/AYNavigationBar.svg?style=flat)](http://cocoapods.org/pods/AYNavigationBar)
+[![License](https://img.shields.io/cocoapods/l/AYNavigationBar.svg?style=flat)](http://cocoapods.org/pods/AYNavigationBar)
+[![Platform](https://img.shields.io/cocoapods/p/AYNavigationBar.svg?style=flat)](http://cocoapods.org/pods/AYNavigationBar)
 
 ## Overview
 

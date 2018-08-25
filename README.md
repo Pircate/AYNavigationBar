@@ -1,5 +1,7 @@
 # AYNavigationBar
 
+[![Version](https://img.shields.io/cocoapods/v/AYNavigationBar.svg?style=flat)](http://cocoapods.org/pods/AYNavigationBar)
+
 ## Overview
 
 ![snapshot](https://github.com/CodeABug/AYNavigationBar/blob/master/demo.gif)
